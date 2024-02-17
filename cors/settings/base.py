@@ -31,6 +31,7 @@ LIBRARY_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.courses',
 ]
 
 INSTALLED_APPS = [
