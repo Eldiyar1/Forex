@@ -1,19 +1,14 @@
-# serializers.py
 from django.db.models import Avg
 from rest_framework import serializers
 from .models import Course, Lecture, Review
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    rating_stars = serializers.SerializerMethodField()
+    course = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
 
     class Meta:
         model = Review
-        fields = ['id', 'user', 'rating_stars', 'comment', 'created_at']
-
-    def get_rating_stars(self, obj):
-        stars = "★" * obj.rating
-        return stars
+        fields = ['id', 'user', 'course', 'rating', 'comment', 'created_at']
 
 
 class LectureSerializer(serializers.ModelSerializer):

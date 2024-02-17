@@ -1,5 +1,5 @@
 from django.db import models
-from apps.users.models import User
+from cors.settings.base import AUTH_USER_MODEL
 
 
 class Course(models.Model):
@@ -31,8 +31,8 @@ class Lecture(models.Model):
 
 class Review(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='reviews', verbose_name='Курс')
-    user = models.ForeignKey(User, on_delete=models.CASCADE,  related_name='reviews', verbose_name='Пользователь')
-    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], verbose_name='Рейтинг')
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE,  related_name='reviews', verbose_name='Пользователь')
+    rating = models.IntegerField(choices=[(i, i * '★') for i in range(1, 6)], verbose_name='Рейтинг')
     comment = models.TextField(verbose_name='Комментарий')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 

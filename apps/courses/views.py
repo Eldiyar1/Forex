@@ -31,6 +31,10 @@ class ReviewListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
 
     def create(self, request, *args, **kwargs):
+
+        if not request.user.is_authenticated:
+            return Response({"error": "Пользователь не аутентифицирован"}, status=status.HTTP_401_UNAUTHORIZED)
+
         user = request.user
         course_id = request.data.get('course')
         course = get_object_or_404(Course, id=course_id)
