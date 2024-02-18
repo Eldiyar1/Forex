@@ -23,6 +23,7 @@ class UserAdmin(UserAdmin):
             {
                 "fields": (
                     "username",
+                    'email',
                     "password",
                     "is_superuser",
                     "is_staff",
