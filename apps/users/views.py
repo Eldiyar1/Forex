@@ -2,13 +2,14 @@ from django.contrib.auth import authenticate
 from django.db.migrations import serializer
 from rest_framework import status
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, \
+    get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
-from apps.users.models import User
-from apps.users.serializers import RegisterSerializer, LoginSerializer
+from apps.users.models import User, Profile
+from apps.users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer
 
 
 # Create your views here.
@@ -53,3 +54,10 @@ class LoginView(APIView):
 
     def list(self, request):
         return Response(status=status.HTTP_200_OK)
+
+
+class ProfileUserAPIView(RetrieveUpdateAPIView):
+    serializer_class = ProfileSerializer
+
+    def get_object(self):
+        return get_object_or_404(Profile, user=self.request.user.id)

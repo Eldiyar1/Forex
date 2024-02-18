@@ -2,7 +2,7 @@ from phonenumber_field.serializerfields import PhoneNumberField
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-from apps.users.models import User
+from apps.users.models import User, Profile
 
 
 class RegisterSerializer(serializers.Serializer):
@@ -31,7 +31,30 @@ class LoginSerializer(serializers.Serializer):
         model = User
         fields = ["token"]
 
-class UserProfileSerializer(serializers.ModelSerializer):
+
+# class UserProfileSerializer(serializers.ModelSerializer):
+#     username = serializers.CharField(source='user.username')
+#     email = serializers.CharField(source='user.email')
+#
+#     class Meta:
+#         model = Profile
+#         fields = ['id', 'username', 'email', 'avatar']
+#         read_only_fields = ['user']
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', required=False)
+    email = serializers.EmailField(source='user.email', required=False)
+    phone = PhoneNumberField(source='user.phone', region='KG', required=False)
+
     class Meta:
-        model = User
-        fields = ['id']
+        model = Profile
+        fields = ['user', 'avatar', 'username', 'email', 'phone']
+        read_only_fields = ['user']
+
+    def update(self, instance, validated_data):
+        user_data = validated_data.pop('user', {})
+        for attr, value in user_data.items():
+            setattr(instance.user, attr, value)
+        instance.user.save()
+        return instance
