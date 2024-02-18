@@ -1,20 +1,19 @@
-from django.db.models import Avg
 from rest_framework import serializers
 from .models import Course, Lecture, Review
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    course = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
+    course_title = serializers.CharField(source='course.title')
 
     class Meta:
         model = Review
-        fields = ['id', 'user', 'course', 'rating', 'comment', 'created_at']
+        fields = ('id', 'user', 'course_title', 'rating', 'comment', 'created_at')
 
 
 class LectureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lecture
-        fields = ['id', 'title', 'duration', 'video_url']
+        fields = ('id', 'title', 'duration', 'video_file')
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -22,18 +21,21 @@ class CourseSerializer(serializers.ModelSerializer):
     lectures = LectureSerializer(many=True, read_only=True)
     rating = serializers.SerializerMethodField()
     total_duration = serializers.SerializerMethodField()
+    author_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'image', 'price', 'rating', 'total_duration', 'reviews', 'lectures']
+
+        fields = (
+            'id', 'title', 'image', 'price', 'rating', 'total_duration', 'reviews', 'lectures', 'author', 'author_name'
+        )
 
     def get_rating(self, obj):
-        rating_avg = obj.reviews.aggregate(Avg('rating'))['rating__avg']
-        if rating_avg is None:
-            return "Пока нет рейтинга"
-        else:
-            stars = "★" * int(round(rating_avg))
-            return stars
+        return obj.avg_rating if obj.avg_rating is not None else "Пока нет рейтинга"
 
     def get_total_duration(self, obj):
-        return sum(lecture.duration for lecture in obj.lectures.all())
+        total_duration = sum(lecture.duration for lecture in obj.lectures.all() if lecture.duration)
+        return int(total_duration)
+
+    def get_author_name(self, obj):
+        return obj.author.username

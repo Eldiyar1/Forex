@@ -3,11 +3,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from cors.settings.swagger import swagger_urlpatterns
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include("apps.courses.urls")),
-]
+] + swagger_urlpatterns
 
 if settings.DEBUG:
     import debug_toolbar

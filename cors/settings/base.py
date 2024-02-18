@@ -26,7 +26,8 @@ LIBRARY_APPS = [
     'corsheaders',
     'django_filters',
     "rest_framework_simplejwt",
-    'debug_toolbar'
+    'debug_toolbar',
+    'drf_yasg'
 ]
 
 LOCAL_APPS = [
