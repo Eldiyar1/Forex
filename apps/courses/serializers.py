@@ -1,8 +1,18 @@
+from django.db.models import Avg
 from rest_framework import serializers
 from .models import Course, Lecture, Review
+from ..users.models import User
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ('id', 'title')
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    course = CourseSerializer(read_only=True)
+
     class Meta:
         model = Review
         fields = ('id', 'course', 'rating', 'comment', 'created_at')
@@ -22,7 +32,7 @@ class BaseCourseSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'image', 'price', 'rating')
 
     def get_rating(self, obj):
-        return obj.avg_rating if obj.avg_rating is not None else None
+        return obj.reviews.aggregate(Avg('rating'))['rating__avg'] if obj.reviews.exists() else None
 
 
 class CourseListSerializer(BaseCourseSerializer):
@@ -30,7 +40,14 @@ class CourseListSerializer(BaseCourseSerializer):
         model = Course
 
 
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
 class CourseDetailSerializer(BaseCourseSerializer):
+    author = AuthorSerializer(read_only=True)
     reviews = ReviewSerializer(many=True, read_only=True)
     lectures = LectureSerializer(many=True, read_only=True)
     total_duration = serializers.SerializerMethodField()
@@ -38,7 +55,7 @@ class CourseDetailSerializer(BaseCourseSerializer):
 
     class Meta(BaseCourseSerializer.Meta):
         model = Course
-        fields = BaseCourseSerializer.Meta.fields + ('total_duration', 'lecture_count', 'lectures', 'reviews')
+        fields = BaseCourseSerializer.Meta.fields + ('total_duration', 'lecture_count', 'author', 'lectures', 'reviews')
         read_only_fields = ('author',)
 
     def get_total_duration(self, obj):
@@ -47,4 +64,3 @@ class CourseDetailSerializer(BaseCourseSerializer):
 
     def get_lecture_count(self, obj):
         return obj.lectures.count()
-

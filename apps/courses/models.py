@@ -79,9 +79,6 @@ class Review(models.Model):
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
-        unique_together = ('course', 'user')
 
     def __str__(self):
         return f"Отзыв от {self.user} для {self.course.title} - Рейтинг: {self.rating}"
-
-
