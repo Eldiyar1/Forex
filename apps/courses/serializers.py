@@ -3,11 +3,9 @@ from .models import Course, Lecture, Review
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    course_title = serializers.CharField(source='course.title')
-
     class Meta:
         model = Review
-        fields = ('id', 'user', 'course_title', 'rating', 'comment', 'created_at')
+        fields = ('id', 'user', 'course', 'rating', 'comment', 'created_at')
 
 
 class LectureSerializer(serializers.ModelSerializer):
@@ -16,26 +14,30 @@ class LectureSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'duration', 'video_file')
 
 
-class CourseSerializer(serializers.ModelSerializer):
-    reviews = ReviewSerializer(many=True, read_only=True)
-    lectures = LectureSerializer(many=True, read_only=True)
+class BaseCourseSerializer(serializers.ModelSerializer):
     rating = serializers.SerializerMethodField()
-    total_duration = serializers.SerializerMethodField()
-    author_name = serializers.SerializerMethodField()
 
     class Meta:
-        model = Course
-
-        fields = (
-            'id', 'title', 'image', 'price', 'rating', 'total_duration', 'reviews', 'lectures', 'author', 'author_name'
-        )
+        fields = ('id', 'title', 'image', 'price', 'rating')
 
     def get_rating(self, obj):
-        return obj.avg_rating if obj.avg_rating is not None else "Пока нет рейтинга"
+        return obj.avg_rating if obj.avg_rating is not None else None
+
+
+class CourseListSerializer(BaseCourseSerializer):
+    class Meta(BaseCourseSerializer.Meta):
+        model = Course
+
+
+class CourseDetailSerializer(BaseCourseSerializer):
+    reviews = ReviewSerializer(many=True, read_only=True)
+    lectures = LectureSerializer(many=True, read_only=True)
+    total_duration = serializers.SerializerMethodField()
+
+    class Meta(BaseCourseSerializer.Meta):
+        model = Course
+        fields = BaseCourseSerializer.Meta.fields + ('total_duration', 'author', 'lectures', 'reviews')
 
     def get_total_duration(self, obj):
         total_duration = sum(lecture.duration for lecture in obj.lectures.all() if lecture.duration)
         return int(total_duration)
-
-    def get_author_name(self, obj):
-        return obj.author.username

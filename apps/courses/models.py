@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core.validators import MinValueValidator, FileExtensionValidator
 from django.db import models
 from rest_framework import status
-from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
 from cors.settings.base import AUTH_USER_MODEL
@@ -75,7 +74,7 @@ class Review(models.Model):
                              verbose_name='Пользователь')
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], verbose_name='Рейтинг')
     comment = models.TextField(verbose_name='Комментарий')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
 
     class Meta:
         verbose_name = 'Отзыв'
@@ -85,7 +84,4 @@ class Review(models.Model):
     def __str__(self):
         return f"Отзыв от {self.user} для {self.course.title} - Рейтинг: {self.rating}"
 
-    def clean(self):
-        if Review.objects.filter(course=self.course, user=self.user).exists():
-            raise ValidationError({'course': 'Вы уже оставили отзыв для этого курса.'})
-        super().clean()
+
