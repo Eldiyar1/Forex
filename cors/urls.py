@@ -8,10 +8,12 @@ from cors.settings.swagger import swagger_urlpatterns
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include("apps.courses.urls")),
+    path('user/', include('apps.users.urls'))
 ] + swagger_urlpatterns
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]

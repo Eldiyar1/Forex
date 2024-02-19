@@ -27,7 +27,8 @@ LIBRARY_APPS = [
     'django_filters',
     "rest_framework_simplejwt",
     'debug_toolbar',
-    'drf_yasg'
+    'drf_yasg',
+    "phonenumber_field",
 ]
 
 LOCAL_APPS = [
@@ -133,6 +134,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 13,
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ),
 }
 
