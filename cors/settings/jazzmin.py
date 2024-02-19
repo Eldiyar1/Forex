@@ -23,13 +23,10 @@ JAZZMIN_SETTINGS = {
         "auth.group": "vertical_tabs",
     },
     "icons": {
-        "store.Category": "fas fa-list-alt",
-        "store.Product": "fas fa-store",
-        "store.ProductType": "fas fa-cubes",
-        "account.Customer": "fas fa-user",
-        "account.Address": "fas fa-address-card",
-        "orders.Order": "fas fa-shopping-cart",
-        "orders.OrderItem": "fas fa-shopping-basket",
+        "courses.Course": "fas fa-list-alt",
+        "courses.Lecture": "fas fa-solid fa-video",
+        "courses.Review": "fas fa-solid fa-comment",
+        "users.User": "fas fa-user",
         "auth.Group": "fas fa-users"
     },
 }

@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate
-from django.db.migrations import serializer
 from rest_framework import status
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, \
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, \
     get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
