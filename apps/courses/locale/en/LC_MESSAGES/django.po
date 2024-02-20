@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-20 20:32+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: apps/courses/models.py:17 apps/courses/models.py:33
+msgid "Название"
+msgstr "Name"
+
+#: apps/courses/models.py:18
+msgid "Изображение"
+msgstr "Image"
+
+#: apps/courses/models.py:19
+msgid "Цена"
+msgstr "Price"
+
+#: apps/courses/models.py:21
+msgid "Автор"
+msgstr "Author"
+
+#: apps/courses/models.py:24 apps/courses/models.py:32
+#: apps/courses/models.py:76
+msgid "Курс"
+msgstr "Course"
+
+#: apps/courses/models.py:25
+msgid "Курсы"
+msgstr "Courses"
+
+#: apps/courses/models.py:34
+msgid "Part number"
+msgstr ""
+
+#: apps/courses/models.py:39
+msgid "Продолжительность"
+msgstr "Duration"
+
+#: apps/courses/models.py:40
+msgid "Не обязательно к заполнению"
+msgstr "It is not necessary to fill in"
+
+#: apps/courses/models.py:45
+msgid "Видеофайл"
+msgstr "Video File"
+
+#: apps/courses/models.py:46
+msgid "Поддерживаемые форматы: mp4, mov, avi webm"
+msgstr "Supported formats: mp4, mov, avi webm"
+
+#: apps/courses/models.py:50
+msgid "Лекция"
+msgstr "Lecture"
+
+#: apps/courses/models.py:51
+msgid "Лекции"
+msgstr "Lectures"
+
+#: apps/courses/models.py:78
+msgid "Пользователь"
+msgstr "Users"
+
+#: apps/courses/models.py:79
+msgid "Рейтинг"
+msgstr "Rating"
+
+#: apps/courses/models.py:80
+msgid "Комментарий"
+msgstr "Comment"
+
+#: apps/courses/models.py:81
+msgid "Дата создания"
+msgstr "Date of creation"
+
+#: apps/courses/models.py:84
+msgid "Отзыв"
+msgstr "Review"
+
+#: apps/courses/models.py:85
+msgid "Отзывы"
+msgstr "Reviews"

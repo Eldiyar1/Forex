@@ -6,45 +6,46 @@ from django.core.validators import MinValueValidator, FileExtensionValidator
 from django.db import models
 from rest_framework import status
 from rest_framework.response import Response
-
+from django.utils.translation import gettext_lazy as _
 from cors.settings.base import AUTH_USER_MODEL
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=200, verbose_name='Название')
-    image = models.ImageField(upload_to='courses/images/', verbose_name='Изображение')
-    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Цена')
-    author = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='courses', verbose_name='Автор')
+    title = models.CharField(max_length=200, verbose_name=_('Название'))
+    image = models.ImageField(upload_to='courses/images/', verbose_name=_('Изображение'))
+    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('Цена'))
+    author = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='courses',
+                               verbose_name=_('Автор'))
 
     class Meta:
-        verbose_name = 'Курс'
-        verbose_name_plural = 'Курсы'
+        verbose_name = _('Курс')
+        verbose_name_plural = _('Курсы')
 
     def __str__(self):
         return f"Курс '{self.title}' от {self.author}"
 
 
 class Lecture(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lectures', verbose_name='Курс')
-    title = models.CharField(max_length=200, verbose_name='Название')
-    part_number = models.FloatField(validators=[MinValueValidator(0)], verbose_name='Номер части')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lectures', verbose_name=_('Курс'))
+    title = models.CharField(max_length=200, verbose_name=_('Название'))
+    part_number = models.FloatField(validators=[MinValueValidator(0)], verbose_name=_('Номер части'))
     duration = models.FloatField(
         validators=[MinValueValidator(0)],
         blank=True,
         null=True,
-        verbose_name='Продолжительность',
-        help_text='Не обязательно к заполнению',
+        verbose_name=_('Продолжительность'),
+        help_text=_('Не обязательно к заполнению'),
     )
     video_file = models.FileField(
         upload_to='lectures/video/',
         validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov', 'avi', 'webm']), ],
-        verbose_name='Видеофайл',
-        help_text='Поддерживаемые форматы: mp4, mov, avi webm',
+        verbose_name=_('Видеофайл'),
+        help_text=_('Поддерживаемые форматы: mp4, mov, avi webm'),
     )
 
     class Meta:
-        verbose_name = 'Лекция'
-        verbose_name_plural = 'Лекции'
+        verbose_name = _('Лекция')
+        verbose_name_plural = _('Лекции')
 
     def __str__(self):
         return f"Часть {self.part_number}: {self.title}"
@@ -69,16 +70,16 @@ class Lecture(models.Model):
 
 
 class Review(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='reviews', verbose_name='Курс')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='reviews', verbose_name=_('Курс'))
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews',
-                             verbose_name='Пользователь')
-    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], verbose_name='Рейтинг')
-    comment = models.TextField(verbose_name='Комментарий')
-    created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
+                             verbose_name=_('Пользователь'))
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], verbose_name=_('Рейтинг'))
+    comment = models.TextField(verbose_name=_('Комментарий'))
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Дата создания'))
 
     class Meta:
-        verbose_name = 'Отзыв'
-        verbose_name_plural = 'Отзывы'
+        verbose_name = _('Отзыв')
+        verbose_name_plural = _('Отзывы')
 
     def __str__(self):
         return f"Отзыв от {self.user} для {self.course.title} - Рейтинг: {self.rating}"

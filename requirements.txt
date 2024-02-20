@@ -7,7 +7,7 @@ django-cors-headers==4.3.1
 django-debug-toolbar==4.3.0
 django-filter==23.5
 django-jazzmin==2.6.0
-django-videofield==0.1.1
+django-phonenumber-field==7.3.0
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
 drf-yasg==1.21.7
@@ -18,6 +18,8 @@ inflection==0.5.1
 numpy==1.26.4
 opencv-python-headless==4.9.0.80
 packaging==23.2
+phonenumbers==8.13.30
+phonenumberslite==8.13.30
 pillow==10.2.0
 proglog==0.1.10
 PyJWT==2.8.0

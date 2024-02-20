@@ -8,19 +8,19 @@ from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
-        max_length=150, blank=False, null=False, unique=True, verbose_name=_("логин")
+        max_length=150, blank=False, null=False, unique=True, verbose_name=_("Логин")
     )
-    email = models.EmailField(max_length=100, null=True, verbose_name=_("Эмайл"))
-    phone = PhoneNumberField(null=True, blank=False, unique=True)
+    email = models.EmailField(max_length=100, null=True, verbose_name=_("Почта"))
+    phone = PhoneNumberField(null=True, blank=False, unique=True, verbose_name=_("Номер телефона"))
     password = models.CharField(
-        max_length=128, blank=True, null=True, verbose_name=_("password")
+        max_length=128, blank=True, null=True, verbose_name=_("Пароль")
     )
-    is_active = models.BooleanField(default=True, verbose_name=_("активирован?"))
-    is_staff = models.BooleanField(default=False, verbose_name=_("сотрудник?"))
+    is_active = models.BooleanField(default=True, verbose_name=_("Активирован?"))
+    is_staff = models.BooleanField(default=False, verbose_name=_("Сотрудник?"))
     is_superuser = models.BooleanField(
-        default=False, verbose_name=_("админ пользователь?")
+        default=False, verbose_name=_("Админ пользователь?")
     )
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('дата создания'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
     USERNAME_FIELD = "username"
 
     objects = UserManager()
@@ -30,14 +30,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         db_table = "users"
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
+        verbose_name = _("Пользователь")
+        verbose_name_plural = _("Пользователи")
         ordering = ("-created_at",)
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(null=True, blank=False, verbose_name=_("avatar"))
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_("Пользователь"))
+    avatar = models.ImageField(null=True, blank=False, verbose_name=_("Аватар"))
 
+    def __str__(self):
+        return self.user
 
-
+    class Meta:
+        verbose_name = _("Профиль")
+        verbose_name_plural = _("Профили")
