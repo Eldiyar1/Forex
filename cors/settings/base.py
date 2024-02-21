@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from .env_reader import env
 from datetime import timedelta
+from django.utils.translation import gettext_lazy as _
 from .jazzmin import *
 
 # BASE_DIR
@@ -27,6 +28,7 @@ LIBRARY_APPS = [
     'django_filters',
     "rest_framework_simplejwt",
     'debug_toolbar',
+    'drf_yasg',
     "phonenumber_field",
 ]
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -72,7 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "cors.wsgi.application"
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
@@ -102,7 +104,7 @@ SIMPLE_JWT = {
     "JTI_CLAIM": "jti",
 }
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'ru-Ru'
 
 TIME_ZONE = 'Asia/Bishkek'
 
@@ -112,6 +114,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = [
+    ('kk', _('Казахский')),
+    ('ru', _('Русский')),
+    ('en', _('Английский')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 # Static files
 STATIC_URL = '/back_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'back_static')

@@ -1,39 +1,66 @@
 from django.db.models import Avg
 from rest_framework import serializers
 from .models import Course, Lecture, Review
+from ..users.models import User
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ('id', 'title')
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    course = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
+    course = CourseSerializer(read_only=True)
 
     class Meta:
         model = Review
-        fields = ['id', 'user', 'course', 'rating', 'comment', 'created_at']
+        fields = ('id', 'course', 'rating', 'comment', 'created_at')
+        read_only_fields = ('user',)
 
 
 class LectureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lecture
-        fields = ['id', 'title', 'duration', 'video_url']
+        fields = ('id', 'part_number', 'title', 'duration', 'video_file')
 
 
-class CourseSerializer(serializers.ModelSerializer):
-    reviews = ReviewSerializer(many=True, read_only=True)
-    lectures = LectureSerializer(many=True, read_only=True)
+class BaseCourseSerializer(serializers.ModelSerializer):
     rating = serializers.SerializerMethodField()
-    total_duration = serializers.SerializerMethodField()
 
     class Meta:
-        model = Course
-        fields = ['id', 'title', 'image', 'price', 'rating', 'total_duration', 'reviews', 'lectures']
+        fields = ('id', 'title', 'image', 'price', 'rating')
 
     def get_rating(self, obj):
-        rating_avg = obj.reviews.aggregate(Avg('rating'))['rating__avg']
-        if rating_avg is None:
-            return "Пока нет рейтинга"
-        else:
-            stars = "★" * int(round(rating_avg))
-            return stars
+        return obj.reviews.aggregate(Avg('rating'))['rating__avg'] if obj.reviews.exists() else None
+
+
+class CourseListSerializer(BaseCourseSerializer):
+    class Meta(BaseCourseSerializer.Meta):
+        model = Course
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
+class CourseDetailSerializer(BaseCourseSerializer):
+    author = AuthorSerializer(read_only=True)
+    reviews = ReviewSerializer(many=True, read_only=True)
+    lectures = LectureSerializer(many=True, read_only=True)
+    total_duration = serializers.SerializerMethodField()
+    lecture_count = serializers.SerializerMethodField()
+
+    class Meta(BaseCourseSerializer.Meta):
+        model = Course
+        fields = BaseCourseSerializer.Meta.fields + ('total_duration', 'lecture_count', 'author', 'lectures', 'reviews')
+        read_only_fields = ('author',)
 
     def get_total_duration(self, obj):
-        return sum(lecture.duration for lecture in obj.lectures.all())
+        total_duration = sum(lecture.duration for lecture in obj.lectures.all() if lecture.duration)
+        return int(total_duration)
+
+    def get_lecture_count(self, obj):
+        return obj.lectures.count()
