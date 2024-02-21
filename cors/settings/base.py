@@ -2,9 +2,10 @@ import os
 from pathlib import Path
 from .env_reader import env
 from datetime import timedelta
-from django.utils.translation import gettext_lazy as _
 from .jazzmin import *
+from django.utils import translation
 
+current_language = translation.get_language()
 # BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -33,8 +34,8 @@ LIBRARY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'apps.users',
-    'apps.courses',
+    'apps.users.apps.UsersConfig',
+    'apps.courses.apps.CoursesConfig',
 ]
 
 INSTALLED_APPS = [
@@ -60,8 +61,7 @@ ROOT_URLCONF = "cors.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": []
-        ,
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -114,15 +114,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+gettext = lambda s: s
+
 LANGUAGES = [
-    ('kk', _('Казахский')),
-    ('ru', _('Русский')),
-    ('en', _('Английский')),
+    ('ru', gettext('Русский')),
+    ('kk', gettext('Казахский')),
+    ('en', gettext('Английский')),
 ]
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
+    f"{BASE_DIR}/courses/locale",
+    f"{BASE_DIR}/users/locale",
 ]
+
 # Static files
 STATIC_URL = '/back_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'back_static')

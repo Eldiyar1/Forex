@@ -4,7 +4,9 @@ from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .managers import UserManager
+from django.utils import translation
 
+current_language = translation.get_language()
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(

@@ -7,9 +7,9 @@ from cors.settings.swagger import swagger_urlpatterns
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('user/', include('apps.users.urls')),
+    path("i18n/", include("django.conf.urls.i18n")),
     path("api/v1/", include("apps.courses.urls")),
-
+    path('api/v1/', include('apps.users.urls'))
 ] + swagger_urlpatterns
 
 if settings.DEBUG:
