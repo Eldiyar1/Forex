@@ -4,6 +4,7 @@ import cv2
 from django.conf import settings
 from django.core.validators import MinValueValidator, FileExtensionValidator
 from django.db import models
+from django.utils.text import format_lazy
 from rest_framework import status
 from rest_framework.response import Response
 from django.utils.translation import gettext_lazy as _
@@ -22,7 +23,7 @@ class Course(models.Model):
         verbose_name_plural = _('Курсы')
 
     def __str__(self):
-        return f"Курс '{self.title}' от {self.author}"
+        return str(format_lazy(_("Курс '{title}' от {author}"), title=self.title, author=self.author))
 
 
 class Lecture(models.Model):
@@ -48,7 +49,7 @@ class Lecture(models.Model):
         verbose_name_plural = _('Лекции')
 
     def __str__(self):
-        return f"Часть {self.part_number}: {self.title}"
+        return str(format_lazy(_("Часть {part_number}: {title}"), part_number=self.part_number, title=self.title))
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -82,4 +83,5 @@ class Review(models.Model):
         verbose_name_plural = _('Отзывы')
 
     def __str__(self):
-        return f"Отзыв от {self.user} для {self.course.title} - Рейтинг: {self.rating}"
+        return str(format_lazy(_("Отзыв от {user} для {course_title} - Рейтинг: {rating}"), user=self.user,
+                               course_title=self.course.title, rating=self.rating))

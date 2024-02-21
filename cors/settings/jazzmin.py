@@ -1,14 +1,17 @@
+from django.utils.translation import gettext_lazy as _
+
+
 JAZZMIN_SETTINGS = {
     "site_title": "Forex",
     "site_header": "Forex",
     "site_logo_classes": "img-circle",
-    "site_brand": "Forex",
+    "site_brand": _("Админ панель"),
     "welcome_sign": "Добро пожаловать в Forex",
     "copyright": "Forex",
     "search_model": ["auth.User", "auth.Group", "products.Product"],
     "show_ui_builder": True,
     "topmenu_links": [
-        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": _("Главная"), "url": "admin:index", "permissions": ["auth.view_user"]},
         {"app": "Forex"},
         {"model": "auth.User"},
         {"name": "Support", "url": "https://t.me/elldiyar", "new_window": True},
@@ -18,6 +21,7 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": True,
     "navigation_expanded": True,
     "changeform_format": "horizontal_tabs",
+    "language_chooser": True,
     "changeform_format_overrides": {
         "auth.user": "collapsible",
         "auth.group": "vertical_tabs",

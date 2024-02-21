@@ -32,7 +32,8 @@ class BaseCourseSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'image', 'price', 'rating')
 
     def get_rating(self, obj):
-        return obj.reviews.aggregate(Avg('rating'))['rating__avg'] if obj.reviews.exists() else None
+        avg_rating = obj.reviews.aggregate(Avg('rating'))['rating__avg']
+        return round(avg_rating, 2) if avg_rating is not None else None
 
 
 class CourseListSerializer(BaseCourseSerializer):
