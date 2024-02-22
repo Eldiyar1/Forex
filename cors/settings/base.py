@@ -118,14 +118,15 @@ gettext = lambda s: s
 
 LANGUAGES = [
     ('ru', gettext('Русский')),
-    ('kk', gettext('Казахский')),
-    ('en', gettext('Английский')),
+    ('en', gettext('English')),
+    ('kk', gettext('Қазақша')),
 ]
 
 LOCALE_PATHS = [
-    f"{BASE_DIR}/courses/locale",
-    f"{BASE_DIR}/users/locale",
+    f"{BASE_DIR}/apps/courses/locale",
+    f"{BASE_DIR}/apps/users/locale",
 ]
+
 
 # Static files
 STATIC_URL = '/back_static/'

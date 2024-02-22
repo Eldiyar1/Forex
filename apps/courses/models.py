@@ -4,9 +4,9 @@ import cv2
 from django.conf import settings
 from django.core.validators import MinValueValidator, FileExtensionValidator
 from django.db import models
+from django.http import JsonResponse
 from django.utils.text import format_lazy
 from rest_framework import status
-from rest_framework.response import Response
 from django.utils.translation import gettext_lazy as _
 from cors.settings.base import AUTH_USER_MODEL
 
@@ -64,10 +64,10 @@ class Lecture(models.Model):
                     self.duration = round(frame_count / fps, 2)
                     Lecture.objects.filter(pk=self.pk).update(duration=self.duration)
                 except Exception as e:
-                    return Response({"error": f"Error processing video file: {e}"},
+                    return JsonResponse({"error": _("Error processing video file: ") + str(e)},
                                     status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             else:
-                return Response({"error": "Video file not found."}, status=status.HTTP_404_NOT_FOUND)
+                return JsonResponse({"error": _("Video file not found.")}, status=status.HTTP_404_NOT_FOUND)
 
 
 class Review(models.Model):

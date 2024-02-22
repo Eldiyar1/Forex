@@ -8,88 +8,114 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-20 19:53+0600\n"
+"POT-Creation-Date: 2024-02-22 13:52+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-#: apps/courses/models.py:14 apps/courses/models.py:30
-msgid "Название"
-msgstr "Атауы"
 
-#: apps/courses/models.py:15
-msgid "Изображение"
-msgstr "Сурет"
-
-#: apps/courses/models.py:16
-msgid "Цена"
-msgstr "Бағасы"
-
-#: apps/courses/models.py:18
-msgid "Автор"
-msgstr "Автор"
-
-#: apps/courses/models.py:21 apps/courses/models.py:29
-#: apps/courses/models.py:73
-msgid "Курс"
-msgstr "Курс"
-
-#: apps/courses/models.py:22
+#: apps/courses/apps.py:8 apps/courses/models.py:23
+#, fuzzy
+#| msgid "Курс"
 msgid "Курсы"
 msgstr "Курстар"
 
-#: apps/courses/models.py:31
-msgid "Номер части"
-msgstr "Бөлім нөмірі"
+#: apps/courses/models.py:15 apps/courses/models.py:31
+msgid "Название"
+msgstr "Аtaýy"
 
-#: apps/courses/models.py:36
+#: apps/courses/models.py:16
+msgid "Изображение"
+msgstr "Сурет"
+
+#: apps/courses/models.py:17
+msgid "Цена"
+msgstr "Бағасы"
+
+#: apps/courses/models.py:19
+msgid "Автор"
+msgstr "Автор"
+
+#: apps/courses/models.py:22 apps/courses/models.py:30
+#: apps/courses/models.py:74
+msgid "Курс"
+msgstr "Курс"
+
+#: apps/courses/models.py:26
+#, fuzzy, python-brace-format
+#| msgid "Курс {title} от {author}"
+msgid "Курс '{title}' от {author}"
+msgstr "'{title} курсы {author} авторынан"
+
+#: apps/courses/models.py:32
+msgid "Номер части"
+msgstr "Бөлімінің нөмірі"
+
+#: apps/courses/models.py:37
 msgid "Продолжительность"
 msgstr "Ұзақтығы"
 
-#: apps/courses/models.py:37
-msgid "толтыру міндетті емес"
-msgstr ""
-
-#: apps/courses/models.py:42
-msgid "Видеофайл"
-msgstr "Видео"
+#: apps/courses/models.py:38
+msgid "Не обязательно к заполнению"
+msgstr "Толтыру міндетті емес"
 
 #: apps/courses/models.py:43
+msgid "Видеофайл"
+msgstr "Видеофайл"
+
+#: apps/courses/models.py:44
 msgid "Поддерживаемые форматы: mp4, mov, avi webm"
 msgstr "Қолдау көрсетілетін форматтар: mp4, mov, avi webm"
 
-#: apps/courses/models.py:47
-msgid "Лекция"
-msgstr "Дәріс"
-
 #: apps/courses/models.py:48
-msgid "Лекции"
-msgstr "Дәрістер"
+msgid "Лекция"
+msgstr "Сабақ"
 
-#: apps/courses/models.py:75
+#: apps/courses/models.py:49
+msgid "Лекции"
+msgstr "Сабақтар"
+
+#: apps/courses/models.py:52
+#, python-brace-format
+msgid "Часть {part_number}: {title}"
+msgstr "Бөлім {part_number}: {title}"
+
+#: apps/courses/models.py:67
+msgid "Error processing video file: "
+msgstr "Видео файлды өңдеу кезінде қате орын алды: "
+
+#: apps/courses/models.py:70
+msgid "Video file not found."
+msgstr "Видео файл табылмады."
+
+#: apps/courses/models.py:76
 msgid "Пользователь"
 msgstr "Пайдаланушы"
 
-#: apps/courses/models.py:76
-msgid "Рейтинг"
-msgstr "Рейтинг"
-
 #: apps/courses/models.py:77
+msgid "Рейтинг"
+msgstr "Баға"
+
+#: apps/courses/models.py:78
 msgid "Комментарий"
 msgstr "Пікір"
 
-#: apps/courses/models.py:78
+#: apps/courses/models.py:79
 msgid "Дата создания"
-msgstr "Құрылған күні"
+msgstr "Жалғану күні"
 
-#: apps/courses/models.py:81
+#: apps/courses/models.py:82
 msgid "Отзыв"
 msgstr "Пікір"
 
-#: apps/courses/models.py:82
+#: apps/courses/models.py:83
 msgid "Отзывы"
 msgstr "Пікірлер"
+
+#: apps/courses/models.py:86
+#, python-brace-format
+msgid "Отзыв от {user} для {course_title} - Рейтинг: {rating}"
+msgstr "{user} сің {course_title} курсына берген пікірі - Баға: {rating}"

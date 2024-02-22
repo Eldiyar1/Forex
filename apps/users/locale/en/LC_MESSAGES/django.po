@@ -8,63 +8,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-20 19:53+0600\n"
+"POT-Creation-Date: 2024-02-22 03:04+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: apps/users/models.py:14
-msgid "Логин"
-msgstr "Login"
 
-#: apps/users/models.py:16
-msgid "Почта"
-msgstr "Email"
-
-#: apps/users/models.py:17
-msgid "Номер телефона"
-msgstr "Phone number"
-
-#: apps/users/models.py:19
-msgid "Пароль"
-msgstr "Password"
-
-#: apps/users/models.py:21
-msgid "Активирован?"
-msgstr "Is active?"
-
-#: apps/users/models.py:22
-msgid "Сотрудник?"
-msgstr "Is staff?"
-
-#: apps/users/models.py:24
-msgid "Админ пользователь?"
-msgstr "Issuperuser?"
-
-#: apps/users/models.py:26
-msgid "Дата создания"
-msgstr "Date created"
-
-#: apps/users/models.py:36 apps/users/models.py:42
+#: apps/users/apps.py:8 apps/users/models.py:27 apps/users/models.py:33
 msgid "Пользователь"
 msgstr "User"
 
-#: apps/users/models.py:37
+#: apps/users/models.py:10
+msgid "Логин"
+msgstr "Login"
+
+#: apps/users/models.py:11
+msgid "Почта"
+msgstr "Email"
+
+#: apps/users/models.py:12
+msgid "Номер телефона"
+msgstr "Phone number"
+
+#: apps/users/models.py:13
+msgid "Пароль"
+msgstr "Password"
+
+#: apps/users/models.py:14
+msgid "Активирован?"
+msgstr "Is activated?"
+
+#: apps/users/models.py:15
+msgid "Сотрудник?"
+msgstr "Is staff?"
+
+#: apps/users/models.py:16
+msgid "Админ пользователь?"
+msgstr "Is admin user?"
+
+#: apps/users/models.py:17
+msgid "Дата создания"
+msgstr "Date created"
+
+#: apps/users/models.py:28
 msgid "Пользователи"
 msgstr "Users"
 
-#: apps/users/models.py:43
+#: apps/users/models.py:34
 msgid "Аватар"
 msgstr "Avatar"
 
-#: apps/users/models.py:49
+#: apps/users/models.py:40
 msgid "Профиль"
 msgstr "Profile"
 
-#: apps/users/models.py:50
+#: apps/users/models.py:41
 msgid "Профили"
 msgstr "Profiles"
