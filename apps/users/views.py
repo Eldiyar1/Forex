@@ -5,6 +5,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView,
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
+from django.utils.translation import gettext as _
 
 from apps.users.models import User, Profile
 from apps.users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer
@@ -42,7 +43,7 @@ class LoginView(APIView):
             access = AccessToken.for_user(user)
             return Response(
                 {
-                    'messege': 'authenticate successfully',
+                    'messege': _('authenticate successfully'),
                     "status": status.HTTP_200_OK,
                     "username": user.username,
                     'email': user.email,

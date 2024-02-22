@@ -7,6 +7,8 @@ from apps.users.models import User, Profile
 admin.site.unregister(Group)
 
 admin.site.register(Profile)
+
+
 @admin.register(User)
 class UserAdmin(UserAdmin):
     list_display = ("username", "is_staff", "is_active", "is_superuser")
@@ -34,4 +36,3 @@ class UserAdmin(UserAdmin):
             },
         ),
     )
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-20 19:53+0600\n"
+"POT-Creation-Date: 2024-02-22 18:06+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,54 +19,58 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: apps/users/models.py:14
-msgid "Логин"
-msgstr "Логин"
-
-#: apps/users/models.py:16
-msgid "Почта"
-msgstr "Почта"
-
-#: apps/users/models.py:17
-msgid "Номер телефона"
-msgstr "Номер телефона"
-
-#: apps/users/models.py:19
-msgid "Пароль"
-msgstr "Пароль"
-
-#: apps/users/models.py:21
-msgid "Активирован?"
-msgstr "Активирован?"
-
-#: apps/users/models.py:22
-msgid "Сотрудник?"
-msgstr "Сотрудник?"
-
-#: apps/users/models.py:24
-msgid "Админ пользователь?"
-msgstr "Админ пользователь?"
-
-#: apps/users/models.py:26
-msgid "Дата создания"
-msgstr "Дата создания"
-
-#: apps/users/models.py:36 apps/users/models.py:42
-msgid "Пользователь"
-msgstr "Пользователь"
-
-#: apps/users/models.py:37
-msgid "Пользователи"
+#: apps/users/apps.py:8 apps/users/models.py:29
+msgid "Users"
 msgstr "Пользователи"
 
-#: apps/users/models.py:43
-msgid "Аватар"
+#: apps/users/models.py:11
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: apps/users/models.py:12
+msgid "E-mail"
+msgstr "Электронная почта"
+
+#: apps/users/models.py:13
+msgid "Phone Number"
+msgstr "Номер телефона"
+
+#: apps/users/models.py:14
+msgid "Password"
+msgstr "Пароль"
+
+#: apps/users/models.py:15
+msgid "Active"
+msgstr "Активный"
+
+#: apps/users/models.py:16
+msgid "Staff"
+msgstr "Персонал"
+
+#: apps/users/models.py:17
+msgid "Admin"
+msgstr "Администратор"
+
+#: apps/users/models.py:18
+msgid "Date Created"
+msgstr "Дата создания"
+
+#: apps/users/models.py:28 apps/users/models.py:34
+msgid "User"
+msgstr "Пользователь"
+
+#: apps/users/models.py:35
+msgid "Avatar"
 msgstr "Аватар"
 
-#: apps/users/models.py:49
-msgid "Профиль"
+#: apps/users/models.py:42
+msgid "Profile"
 msgstr "Профиль"
 
-#: apps/users/models.py:50
-msgid "Профили"
+#: apps/users/models.py:43
+msgid "Profiles"
 msgstr "Профили"
+
+#: apps/users/views.py:44
+msgid "authenticate successfully"
+msgstr "аутентифицирован успешно"

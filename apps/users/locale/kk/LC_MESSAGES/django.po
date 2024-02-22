@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-20 19:53+0600\n"
+"POT-Creation-Date: 2024-02-22 18:05+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,54 +17,58 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-#: apps/users/models.py:14
-msgid "Логин"
-msgstr "Кіру"
-
-#: apps/users/models.py:16
-msgid "Почта"
-msgstr "Пошта"
-
-#: apps/users/models.py:17
-msgid "Номер телефона"
-msgstr "Телефон нөмірі"
-
-#: apps/users/models.py:19
-msgid "Пароль"
-msgstr "Құпия сөз"
-
-#: apps/users/models.py:21
-msgid "Активирован?"
-msgstr "Іске қосылды ма?"
-
-#: apps/users/models.py:22
-msgid "Сотрудник?"
-msgstr "Қызметкер?"
-
-#: apps/users/models.py:24
-msgid "Админ пользователь?"
-msgstr "Әкімші пайдаланушы?"
-
-#: apps/users/models.py:26
-msgid "Дата создания"
-msgstr "Құрылған күні"
-
-#: apps/users/models.py:36 apps/users/models.py:42
-msgid "Пользователь"
-msgstr "Пайдаланушы"
-
-#: apps/users/models.py:37
-msgid "Пользователи"
+#: apps/users/apps.py:8 apps/users/models.py:29
+msgid "Users"
 msgstr "Пайдаланушылар"
 
-#: apps/users/models.py:43
-msgid "Аватар"
-msgstr "Cурет"
+#: apps/users/models.py:11
+msgid "Username"
+msgstr "Қолданушы аты"
 
-#: apps/users/models.py:49
-msgid "Профиль"
+#: apps/users/models.py:12
+msgid "E-mail"
+msgstr "Электронды пошта"
+
+#: apps/users/models.py:13
+msgid "Phone Number"
+msgstr "Телефон нөмірі"
+
+#: apps/users/models.py:14
+msgid "Password"
+msgstr "Құпия сөз"
+
+#: apps/users/models.py:15
+msgid "Active"
+msgstr "Активті"
+
+#: apps/users/models.py:16
+msgid "Staff"
+msgstr "Қызметкерлер"
+
+#: apps/users/models.py:17
+msgid "Admin"
+msgstr "Админ"
+
+#: apps/users/models.py:18
+msgid "Date Created"
+msgstr "Жасалған күні"
+
+#: apps/users/models.py:28 apps/users/models.py:34
+msgid "User"
+msgstr "Пайдаланушы"
+
+#: apps/users/models.py:35
+msgid "Avatar"
+msgstr "Аватар"
+
+#: apps/users/models.py:42
+msgid "Profile"
 msgstr "Профиль"
 
-#: apps/users/models.py:50
-msgid "Профили"
-msgstr "Профильдер"
+#: apps/users/models.py:43
+msgid "Profiles"
+msgstr "Профилдер"
+
+#: apps/users/views.py:44
+msgid "authenticate successfully"
+msgstr "сәтті рұқсат алды"

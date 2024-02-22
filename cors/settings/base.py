@@ -3,9 +3,7 @@ from pathlib import Path
 from .env_reader import env
 from datetime import timedelta
 from .jazzmin import *
-from django.utils import translation
 
-current_language = translation.get_language()
 # BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -34,6 +32,7 @@ LIBRARY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.common.apps.CommonConfig',
     'apps.users.apps.UsersConfig',
     'apps.courses.apps.CoursesConfig',
 ]
@@ -55,6 +54,56 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "pretty": {
+            "format": "\033[1;36m{levelname}\033[0m \033[1;34m{asctime}\033[0m \033[1m{module}\033[0m {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+            "email_backend": "django.core.mail.backends.filebased.EmailBackend",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "pretty",
+            "level": "INFO",
+        },
+        "error_file": {
+            "class": "logging.FileHandler",
+            "filename": f"{BASE_DIR}/errors.log",
+            "level": "ERROR",
+            "formatter": "verbose",
+        },
+        "warning_file": {
+            "class": "logging.FileHandler",
+            "filename": f"{BASE_DIR}/warnings.log",
+            "level": "WARNING",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["console", "error_file", "warning_file"],
+        "level": "DEBUG",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "error_file", "warning_file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
+}
 
 ROOT_URLCONF = "cors.urls"
 
@@ -104,7 +153,7 @@ SIMPLE_JWT = {
     "JTI_CLAIM": "jti",
 }
 
-LANGUAGE_CODE = 'ru-Ru'
+LANGUAGE_CODE = 'en-US'
 
 TIME_ZONE = 'Asia/Bishkek'
 
@@ -118,14 +167,17 @@ gettext = lambda s: s
 
 LANGUAGES = [
     ('ru', gettext('Русский')),
-    ('kk', gettext('Казахский')),
-    ('en', gettext('Английский')),
+    ('en', gettext('English')),
+    ('kk', gettext('Қазақша')),
 ]
 
 LOCALE_PATHS = [
+    f"{BASE_DIR}/common/locale",
     f"{BASE_DIR}/courses/locale",
     f"{BASE_DIR}/users/locale",
+    f"{BASE_DIR}/cors/locale",
 ]
+
 
 # Static files
 STATIC_URL = '/back_static/'
