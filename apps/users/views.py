@@ -24,7 +24,9 @@ class RegisterView(CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):
-        serializer.save()
+        user = serializer.save()
+        profile = Profile.objects.create(user=user)
+        profile.save()
 
 
 class LoginView(APIView):
