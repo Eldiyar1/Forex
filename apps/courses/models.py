@@ -8,8 +8,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.utils.translation import gettext_lazy as _
 from cors.settings.base import AUTH_USER_MODEL
-
-
+import cv2
 class Course(models.Model):
     title = models.CharField(max_length=200, verbose_name=_('Название'))
     image = models.ImageField(upload_to='courses/images/', verbose_name=_('Изображение'))
