@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 18:05+0600\n"
+"POT-Creation-Date: 2024-02-22 18:06+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,46 +16,48 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 #: apps/users/apps.py:8 apps/users/models.py:29
 msgid "Users"
-msgstr "Пайдаланушылар"
+msgstr "Пользователи"
 
 #: apps/users/models.py:11
 msgid "Username"
-msgstr "Қолданушы аты"
+msgstr "Имя пользователя"
 
 #: apps/users/models.py:12
 msgid "E-mail"
-msgstr "Электронды пошта"
+msgstr "Электронная почта"
 
 #: apps/users/models.py:13
 msgid "Phone Number"
-msgstr "Телефон нөмірі"
+msgstr "Номер телефона"
 
 #: apps/users/models.py:14
 msgid "Password"
-msgstr "Құпия сөз"
+msgstr "Пароль"
 
 #: apps/users/models.py:15
 msgid "Active"
-msgstr "Активті"
+msgstr "Активный"
 
 #: apps/users/models.py:16
 msgid "Staff"
-msgstr "Қызметкерлер"
+msgstr "Персонал"
 
 #: apps/users/models.py:17
 msgid "Admin"
-msgstr "Админ"
+msgstr "Администратор"
 
 #: apps/users/models.py:18
 msgid "Date Created"
-msgstr "Жасалған күні"
+msgstr "Дата создания"
 
 #: apps/users/models.py:28 apps/users/models.py:34
 msgid "User"
-msgstr "Пайдаланушы"
+msgstr "Пользователь"
 
 #: apps/users/models.py:35
 msgid "Avatar"
@@ -67,8 +69,8 @@ msgstr "Профиль"
 
 #: apps/users/models.py:43
 msgid "Profiles"
-msgstr "Профилдер"
+msgstr "Профили"
 
 #: apps/users/views.py:44
 msgid "authenticate successfully"
-msgstr "сәтті рұқсат алды"
+msgstr "аутентифицирован успешно"

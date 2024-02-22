@@ -8,6 +8,7 @@ django-debug-toolbar==4.3.0
 django-filter==23.5
 django-jazzmin==2.6.0
 django-phonenumber-field==7.3.0
+django-request-logging==0.7.5
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
 drf-yasg==1.21.7
@@ -22,6 +23,7 @@ phonenumbers==8.13.30
 phonenumberslite==8.13.30
 pillow==10.2.0
 proglog==0.1.10
+psycopg2-binary==2.9.9
 PyJWT==2.8.0
 python-decouple==3.8
 pytz==2024.1

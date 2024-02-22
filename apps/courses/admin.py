@@ -6,12 +6,14 @@ from .models import Course, Lecture, Review
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'price')
     search_fields = ('title', 'video_url')
+    ordering = ('-created_at',)
 
 
 @admin.register(Lecture)
 class LectureAdmin(admin.ModelAdmin):
     list_display = ('title', 'course', 'duration')
     list_filter = ('course',)
+    ordering = ('-created_at',)
 
 
 @admin.register(Review)
@@ -19,3 +21,4 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('course', 'user', 'rating', 'created_at')
     list_filter = ('course', 'user')
     search_fields = ('course__title', 'user__username')
+    ordering = ('-created_at',)
