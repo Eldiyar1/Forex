@@ -12,6 +12,7 @@ django-request-logging==0.7.5
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
 drf-yasg==1.21.7
+Faker==23.2.1
 idna==3.6
 imageio==2.34.0
 imageio-ffmpeg==0.4.9
@@ -25,10 +26,12 @@ pillow==10.2.0
 proglog==0.1.10
 psycopg2-binary==2.9.9
 PyJWT==2.8.0
+python-dateutil==2.8.2
 python-decouple==3.8
 pytz==2024.1
 PyYAML==6.0.1
 requests==2.31.0
+six==1.16.0
 sqlparse==0.4.4
 tqdm==4.66.2
 typing_extensions==4.9.0

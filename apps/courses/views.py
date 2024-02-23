@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from rest_framework import generics, filters
 
 from .models import Course, Lecture, Review
@@ -5,7 +6,7 @@ from .serializers import CourseListSerializer, CourseDetailSerializer, LectureSe
 
 
 class CourseListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Course.objects.select_related('author').prefetch_related('reviews', 'lectures')
+    queryset = Course.objects.all().annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseListSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ('title',)
@@ -15,7 +16,8 @@ class CourseListCreateAPIView(generics.ListCreateAPIView):
 
 
 class CourseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Course.objects.select_related('author').prefetch_related('reviews', 'lectures')
+    queryset = Course.objects.select_related('author') \
+        .prefetch_related('reviews', 'lectures').annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseDetailSerializer
 
 

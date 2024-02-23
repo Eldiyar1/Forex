@@ -1,4 +1,3 @@
-from django.db.models import Avg
 from rest_framework import serializers
 from .models import Course, Lecture, Review
 from ..users.models import User
@@ -10,12 +9,19 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = ('id', 'title')
 
 
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
 class ReviewSerializer(serializers.ModelSerializer):
     course = CourseSerializer(read_only=True)
+    user = AuthorSerializer(read_only=True)
 
     class Meta:
         model = Review
-        fields = ('id', 'course', 'rating', 'comment', 'created_at')
+        fields = ('id', 'course', 'user', 'rating', 'comment', 'created_at')
         read_only_fields = ('user',)
 
 
@@ -32,19 +38,12 @@ class BaseCourseSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'image', 'price', 'rating')
 
     def get_rating(self, obj):
-        avg_rating = obj.reviews.aggregate(Avg('rating'))['rating__avg']
-        return round(avg_rating, 2) if avg_rating is not None else None
+        return obj.avg_rating if obj.avg_rating is not None else None
 
 
 class CourseListSerializer(BaseCourseSerializer):
     class Meta(BaseCourseSerializer.Meta):
         model = Course
-
-
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username')
 
 
 class CourseDetailSerializer(BaseCourseSerializer):

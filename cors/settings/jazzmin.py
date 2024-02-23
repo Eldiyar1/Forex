@@ -8,7 +8,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": _("Admin site"),
     "welcome_sign": _("Welcome to Forex"),
     "copyright": "Forex",
-    "search_model": ["auth.User", "auth.Group", "products.Product"],
+    "search_model": ["auth.User"],
     "show_ui_builder": True,
     "topmenu_links": [
         {"name": _("Home"), "url": "admin:index", "permissions": ["auth.view_user"]},
