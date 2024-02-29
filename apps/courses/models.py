@@ -44,9 +44,10 @@ class Lecture(BaseModel):
     )
     video_file = models.FileField(
         upload_to='lectures/video/',
-        validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov', 'avi', 'webm']), ],
+        validators=[FileExtensionValidator(
+            allowed_extensions=['mp4', 'mov', 'avi', 'webm', 'mkv', 'flv', 'wmv', 'm4v', 'mpeg', '3gp']), ],
         verbose_name=_('Video File'),
-        help_text=_('Supported formats: mp4, mov, avi, webm'),
+        help_text=_('Supported formats: mp4, mov, avi, webm, mkv, flv, wmv, m4v, mpeg, 3gp'),
     )
 
     class Meta:

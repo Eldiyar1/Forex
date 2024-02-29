@@ -16,8 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: cors/settings/base.py:119
 msgid "Русский"
 msgstr ""
@@ -32,12 +31,12 @@ msgstr ""
 
 #: cors/settings/jazzmin.py:8
 msgid "Admin site"
-msgstr "Администратордық сайт"
+msgstr ""
 
 #: cors/settings/jazzmin.py:9
 msgid "Welcome to Forex"
-msgstr "Forex-ке қош келдіңіз"
+msgstr ""
 
 #: cors/settings/jazzmin.py:14
 msgid "Home"
-msgstr "Басты бет"
+msgstr ""

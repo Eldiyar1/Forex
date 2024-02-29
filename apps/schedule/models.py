@@ -32,11 +32,11 @@ class Lesson(models.Model):
 
 class Attendance(models.Model):
     STATUS_CHOICES = [
-        (1, _('Present')),
-        (0, _('Absent')),
+        (1, 1),
+        (0, 0),
     ]
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name=_('Lesson'))
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('User'))
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='attendances', verbose_name=_('Lesson'))
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='attendances', verbose_name=_('User'))
     status = models.PositiveIntegerField(default=0, choices=STATUS_CHOICES, verbose_name=_('Status'))
 
     class Meta:

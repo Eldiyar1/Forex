@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 18:05+0600\n"
+"POT-Creation-Date: 2024-03-01 04:06+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
 #: apps/users/apps.py:8 apps/users/models.py:29
 msgid "Users"
 msgstr "Пайдаланушылар"
@@ -69,6 +70,6 @@ msgstr "Профиль"
 msgid "Profiles"
 msgstr "Профилдер"
 
-#: apps/users/views.py:44
+#: apps/users/views.py:45
 msgid "authenticate successfully"
 msgstr "сәтті рұқсат алды"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 18:06+0600\n"
+"POT-Creation-Date: 2024-03-01 04:08+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,102 +19,104 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: apps/courses/apps.py:8 apps/courses/models.py:25
+
+#: apps/courses/apps.py:8 apps/courses/models.py:27
 msgid "Courses"
 msgstr "Курсы"
 
-#: apps/courses/models.py:17 apps/courses/models.py:34
+#: apps/courses/models.py:19 apps/courses/models.py:36
 msgid "Title"
 msgstr "Название"
 
-#: apps/courses/models.py:18
+#: apps/courses/models.py:20
 msgid "Image"
 msgstr "Изображение"
 
-#: apps/courses/models.py:19
+#: apps/courses/models.py:21
 msgid "Price"
 msgstr "Цена"
 
-#: apps/courses/models.py:21
+#: apps/courses/models.py:23
 msgid "Author"
 msgstr "Автор"
 
-#: apps/courses/models.py:24 apps/courses/models.py:33
-#: apps/courses/models.py:78
+#: apps/courses/models.py:26 apps/courses/models.py:35
+#: apps/courses/models.py:81
 msgid "Course"
 msgstr "Курс"
 
-#: apps/courses/models.py:29
+#: apps/courses/models.py:31
 #, python-brace-format
 msgid "Course '{title}' by {author}"
 msgstr "Курс '{title}' от {author}"
 
-#: apps/courses/models.py:35
+#: apps/courses/models.py:37
 msgid "Part Number"
 msgstr "Номер части"
 
-#: apps/courses/models.py:40
+#: apps/courses/models.py:42
 msgid "Duration"
 msgstr "Продолжительность"
 
-#: apps/courses/models.py:41
+#: apps/courses/models.py:43
 msgid "Optional"
 msgstr "Необязательно"
 
-#: apps/courses/models.py:46
+#: apps/courses/models.py:49
 msgid "Video File"
 msgstr "Видеофайл"
 
-#: apps/courses/models.py:47
-msgid "Supported formats: mp4, mov, avi, webm"
-msgstr "Поддерживаемые форматы: mp4, mov, avi, webm"
+#: apps/courses/models.py:50
+msgid "Supported formats: mp4, mov, avi, webm, mkv, flv, wmv, m4v, mpeg, 3gp"
+msgstr ""
+"Поддерживаемые форматы: mp4, mov, avi, webm, mkv, flv, wmv, m4v, mpeg, 3gp"
 
-#: apps/courses/models.py:51
+#: apps/courses/models.py:54
 msgid "Lecture"
 msgstr "Лекция"
 
-#: apps/courses/models.py:52
+#: apps/courses/models.py:55
 msgid "Lectures"
 msgstr "Лекции"
 
-#: apps/courses/models.py:56
+#: apps/courses/models.py:59
 #, python-brace-format
 msgid "Part {part_number}: {title}"
 msgstr "Часть {part_number}: {title}"
 
-#: apps/courses/models.py:71
+#: apps/courses/models.py:74
 msgid "Error processing video file: "
 msgstr "Ошибка обработки видеофайла: "
 
-#: apps/courses/models.py:74
+#: apps/courses/models.py:77
 msgid "Video file not found."
 msgstr "Видеофайл не найден."
 
-#: apps/courses/models.py:80
+#: apps/courses/models.py:83
 msgid "User"
 msgstr "Пользователь"
 
-#: apps/courses/models.py:81
+#: apps/courses/models.py:84
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: apps/courses/models.py:82
+#: apps/courses/models.py:85
 msgid "Comment"
 msgstr "Комментарий"
 
-#: apps/courses/models.py:83
+#: apps/courses/models.py:86
 msgid "Date Created"
 msgstr "Дата создания"
 
-#: apps/courses/models.py:86
+#: apps/courses/models.py:89
 msgid "Review"
 msgstr "Отзыв"
 
-#: apps/courses/models.py:87
+#: apps/courses/models.py:90
 msgid "Reviews"
 msgstr "Отзывы"
 
-#: apps/courses/models.py:91
+#: apps/courses/models.py:94
 #, python-brace-format
 msgid "Review from {user} for {course_title} - Rating: {rating}"
 msgstr "Отзыв от {user} о {course_title} - Рейтинг: {rating}"
