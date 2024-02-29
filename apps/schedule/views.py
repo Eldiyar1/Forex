@@ -1,17 +1,18 @@
+from django.db.models import Count, Prefetch, Q
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from django.db.models import Count
+from rest_framework.permissions import IsAuthenticated
 
-from apps.schedule.models import Schedule, Lesson, Attendance
+from apps.schedule.models import Schedule, Lesson, Attendance, User
 from apps.schedule.serializers import ScheduleSerializer, LessonSerializer, AttendanceSerializer
 
 
 class ScheduleListCreateAPIView(ListCreateAPIView):
-    queryset = Schedule.objects.all().select_related('lessons')
+    queryset = Schedule.objects.all().prefetch_related('lessons')
     serializer_class = ScheduleSerializer
 
 
 class ScheduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    queryset = Schedule.objects.all().select_related('lessons')
+    queryset = Schedule.objects.all().prefetch_related('lessons')
     serializer_class = ScheduleSerializer
 
 
@@ -25,17 +26,23 @@ class LessonRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = LessonSerializer
 
 
-class AttendanceListCreateAPIView(ListCreateAPIView):
-    queryset = Attendance.objects.all().select_related('lesson', 'user').annotate(total_attendance=Count('id'))
+class BaseAttendanceAPIView:
+    queryset = Attendance.objects.all().select_related('lesson').prefetch_related(
+        Prefetch('user', queryset=User.objects.annotate(
+            total_attendances=Count('attendances', filter=Q(attendances__status=1))
+        ))
+    )
     serializer_class = AttendanceSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
-class AttendanceRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    queryset = Attendance.objects.all().select_related('lesson', 'user')
-    serializer_class = AttendanceSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return super().get_queryset().annotate(total_attendance=Count('id'))
+        user = self.request.user
+        return Attendance.objects.filter(user=user)
+
+
+class AttendanceListCreateAPIView(BaseAttendanceAPIView, ListCreateAPIView):
+    pass
+
+
+class AttendanceRetrieveUpdateDestroyAPIView(BaseAttendanceAPIView, RetrieveUpdateDestroyAPIView):
+    pass

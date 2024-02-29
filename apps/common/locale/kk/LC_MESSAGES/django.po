@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 18:05+0600\n"
+"POT-Creation-Date: 2024-03-01 04:06+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-#: apps/common/models.py:8
+
+#: apps/common/models.py:6
 msgid "Created at"
 msgstr "Жасалған уақыт"
 
-#: apps/common/models.py:9
+#: apps/common/models.py:7
 msgid "Changed at"
 msgstr "Өзгертілген уақыт"
