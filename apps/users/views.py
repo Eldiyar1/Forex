@@ -12,7 +12,6 @@ from apps.users.models import Profile
 from apps.users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer
 
 
-# Create your views here.
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
 
@@ -48,11 +47,11 @@ class LoginView(APIView):
                     'email': user.email,
                     "refresh_token": str(refresh),
                     "access_token": str(access),
+                    "access_expire": datetime.fromtimestamp(
+                        access.payload.get("exp")),
                     "refresh_expire": datetime.fromtimestamp(
                         refresh.payload.get("exp")
-                    ).date(),
-                    "access_expire": datetime.fromtimestamp(
-                        access.payload.get("exp"))
+                    ).date()
                 }
             )
         return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': 'username or password incorrect!'})

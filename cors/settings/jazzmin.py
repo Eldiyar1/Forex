@@ -32,6 +32,7 @@ JAZZMIN_SETTINGS = {
         "schedule.Schedule": "fas fa-regular fa-calendar-check",
         "schedule.Lesson": "fas fa-solid fa-school",
         "schedule.Attendance": "fas fa-solid fa-check",
+        "schedule.Homework": "fas fa-solid fa-paperclip",
         "users.User": "fas fa-user",
         "users.Profile": "fa fa-solid fa-address-card",
         "auth.Group": "fa-solid fa-user-tie"

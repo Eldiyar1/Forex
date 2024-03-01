@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-01 04:08+0600\n"
+"POT-Creation-Date: 2024-03-02 05:00+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,14 +32,14 @@ msgstr ""
 msgid "Қазақша"
 msgstr ""
 
-#: cors/settings/jazzmin.py:8
+#: cors/settings/jazzmin.py:7
 msgid "Admin site"
 msgstr "Сайт администратора"
 
-#: cors/settings/jazzmin.py:9
+#: cors/settings/jazzmin.py:8
 msgid "Welcome to Forex"
 msgstr "Добро пожаловать на Forex"
 
-#: cors/settings/jazzmin.py:14
+#: cors/settings/jazzmin.py:13
 msgid "Home"
 msgstr "Главная"

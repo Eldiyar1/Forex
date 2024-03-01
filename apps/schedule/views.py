@@ -1,8 +1,7 @@
-from django.db.models import Count, Prefetch, Q
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from apps.schedule.models import Schedule, Lesson, Attendance, User
+from apps.schedule.models import Schedule, Lesson, Attendance
 from apps.schedule.serializers import ScheduleSerializer, LessonSerializer, AttendanceSerializer
 
 
@@ -27,11 +26,7 @@ class LessonRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
 
 
 class BaseAttendanceAPIView:
-    queryset = Attendance.objects.all().select_related('lesson').prefetch_related(
-        Prefetch('user', queryset=User.objects.annotate(
-            total_attendances=Count('attendances', filter=Q(attendances__status=1))
-        ))
-    )
+    queryset = Attendance.objects.all().select_related('lesson')
     serializer_class = AttendanceSerializer
     permission_classes = [IsAuthenticated]
 
