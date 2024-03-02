@@ -1,11 +1,12 @@
 from django.db.models import Avg
-from rest_framework import generics, filters
+from rest_framework import filters
+from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 
-from .models import Course, Lecture, Review
-from .serializers import CourseListSerializer, CourseDetailSerializer, LectureSerializer, ReviewSerializer
+from .models import Course, Review
+from .serializers import CourseListSerializer, CourseDetailSerializer,  ReviewSerializer
 
 
-class CourseListCreateAPIView(generics.ListCreateAPIView):
+class CourseListCreateAPIView(ListAPIView):
     queryset = Course.objects.all().annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseListSerializer
     filter_backends = [filters.SearchFilter]
@@ -15,23 +16,13 @@ class CourseListCreateAPIView(generics.ListCreateAPIView):
         serializer.save(author=self.request.user)
 
 
-class CourseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class CourseDetailAPIView(RetrieveAPIView):
     queryset = Course.objects.select_related('author') \
         .prefetch_related('reviews', 'lectures').annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseDetailSerializer
 
 
-class LectureListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Lecture.objects.all().select_related('course')
-    serializer_class = LectureSerializer
-
-
-class LectureDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Lecture.objects.all().select_related('course')
-    serializer_class = LectureSerializer
-
-
-class ReviewListCreateAPIView(generics.ListCreateAPIView):
+class ReviewListCreateAPIView(ListCreateAPIView):
     queryset = Review.objects.all().select_related('course', 'user')
     serializer_class = ReviewSerializer
 
@@ -39,6 +30,7 @@ class ReviewListCreateAPIView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class ReviewDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class ReviewDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all().select_related('course', 'user')
     serializer_class = ReviewSerializer
+
