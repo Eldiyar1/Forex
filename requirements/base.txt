@@ -19,7 +19,9 @@ django-phonenumber-field==7.3.0
 django-request-logging==0.7.5
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
+drf-writable-nested==0.7.0
 drf-yasg==1.21.7
+Faker==23.2.1
 flake8==7.0.0
 gunicorn==20.1.0
 idna==3.6
@@ -52,10 +54,6 @@ tqdm==4.66.2
 typing_extensions==4.9.0
 tzdata==2024.1
 uritemplate==4.1.1
-<<<<<<< HEAD
-urllib3==2.2.0
-=======
 urllib3==2.2.0
 vine==5.1.0
 wcwidth==0.2.13
->>>>>>> origin/master

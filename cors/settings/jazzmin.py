@@ -1,6 +1,5 @@
 from django.utils.translation import gettext_lazy as _
 
-
 JAZZMIN_SETTINGS = {
     "site_title": "Forex",
     "site_header": "Forex",
@@ -8,7 +7,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": _("Admin site"),
     "welcome_sign": _("Welcome to Forex"),
     "copyright": "Forex",
-    "search_model": ["auth.User", "auth.Group", "products.Product"],
+    "search_model": ["auth.User"],
     "show_ui_builder": True,
     "topmenu_links": [
         {"name": _("Home"), "url": "admin:index", "permissions": ["auth.view_user"]},
@@ -30,9 +29,14 @@ JAZZMIN_SETTINGS = {
         "courses.Course": "fas fa-list-alt",
         "courses.Lecture": "fas fa-solid fa-video",
         "courses.Review": "fas fa-solid fa-comment",
+        "schedule.Schedule": "fas fa-regular fa-calendar-check",
+        "schedule.Lesson": "fas fa-solid fa-school",
+        "schedule.Attendance": "fas fa-solid fa-check",
+        "schedule.Homework": "fas fa-solid fa-paperclip",
         "users.User": "fas fa-user",
-        "auth.Group": "fas fa-users"
-    },
+        "users.Profile": "fa fa-solid fa-address-card",
+        "auth.Group": "fa-solid fa-user-tie"
+    }
 }
 
 JAZZMIN_UI_TWEAKS = {

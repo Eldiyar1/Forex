@@ -4,10 +4,8 @@ from .env_reader import env
 from datetime import timedelta
 from .jazzmin import *
 
-# BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Production
 PRODUCTION = env('PRODUCTION', default=False, cast=bool)
 
 DJANGO_APPS = [
@@ -35,6 +33,7 @@ LOCAL_APPS = [
     'apps.common.apps.CommonConfig',
     'apps.users.apps.UsersConfig',
     'apps.courses.apps.CoursesConfig',
+    'apps.schedule.apps.ScheduleConfig',
 ]
 
 INSTALLED_APPS = [
@@ -55,55 +54,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
-            "style": "{",
-        },
-        "pretty": {
-            "format": "\033[1;36m{levelname}\033[0m \033[1;34m{asctime}\033[0m \033[1m{module}\033[0m {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "mail_admins": {
-            "level": "ERROR",
-            "class": "django.utils.log.AdminEmailHandler",
-            "email_backend": "django.core.mail.backends.filebased.EmailBackend",
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "pretty",
-            "level": "INFO",
-        },
-        "error_file": {
-            "class": "logging.FileHandler",
-            "filename": f"{BASE_DIR}/errors.log",
-            "level": "ERROR",
-            "formatter": "verbose",
-        },
-        "warning_file": {
-            "class": "logging.FileHandler",
-            "filename": f"{BASE_DIR}/warnings.log",
-            "level": "WARNING",
-            "formatter": "verbose",
-        },
-    },
-    "root": {
-        "handlers": ["console", "error_file", "warning_file"],
-        "level": "DEBUG",
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console", "error_file", "warning_file"],
-            "level": "DEBUG",
-            "propagate": False,
-        },
-    },
-}
 
 ROOT_URLCONF = "cors.urls"
 
@@ -203,6 +153,10 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
 }
 
 if not PRODUCTION:

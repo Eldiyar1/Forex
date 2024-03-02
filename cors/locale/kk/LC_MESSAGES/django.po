@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 18:05+0600\n"
+"POT-Creation-Date: 2024-03-02 05:00+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-#: cors/settings/base.py:169
+
+#: cors/settings/base.py:119
 msgid "Русский"
 msgstr ""
 
-#: cors/settings/base.py:170
+#: cors/settings/base.py:120
 msgid "English"
 msgstr ""
 
-#: cors/settings/base.py:171
+#: cors/settings/base.py:121
 msgid "Қазақша"
 msgstr ""
 
-#: cors/settings/jazzmin.py:8
+#: cors/settings/jazzmin.py:7
 msgid "Admin site"
 msgstr "Администратордық сайт"
 
-#: cors/settings/jazzmin.py:9
+#: cors/settings/jazzmin.py:8
 msgid "Welcome to Forex"
 msgstr "Forex-ке қош келдіңіз"
 
-#: cors/settings/jazzmin.py:14
+#: cors/settings/jazzmin.py:13
 msgid "Home"
 msgstr "Басты бет"

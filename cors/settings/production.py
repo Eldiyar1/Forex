@@ -21,4 +21,3 @@ DATABASES = {
         'ATOMIC_REQUESTS': True,
     }
 }
-

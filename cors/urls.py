@@ -9,6 +9,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
     path("api/v1/", include("apps.courses.urls")),
+    path('api/v1/', include('apps.schedule.urls')),
     path('api/v1/', include('apps.users.urls'))
 ] + swagger_urlpatterns
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 18:06+0600\n"
+"POT-Creation-Date: 2024-03-02 05:00+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,28 +19,27 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: cors/settings/base.py:169
+
+#: cors/settings/base.py:119
 msgid "Русский"
 msgstr ""
 
-#: cors/settings/base.py:170
+#: cors/settings/base.py:120
 msgid "English"
 msgstr ""
 
-#: cors/settings/base.py:171
+#: cors/settings/base.py:121
 msgid "Қазақша"
 msgstr ""
 
-#: cors/settings/jazzmin.py:8
-
-#: cors/settings/jazzmin.py:8
+#: cors/settings/jazzmin.py:7
 msgid "Admin site"
 msgstr "Сайт администратора"
 
-#: cors/settings/jazzmin.py:9
+#: cors/settings/jazzmin.py:8
 msgid "Welcome to Forex"
 msgstr "Добро пожаловать на Forex"
 
-#: cors/settings/jazzmin.py:14
+#: cors/settings/jazzmin.py:13
 msgid "Home"
 msgstr "Главная"

@@ -10,14 +10,16 @@ from rest_framework import status
 from django.utils.translation import gettext_lazy as _
 
 from apps.common.models import BaseModel
-from cors.settings.base import AUTH_USER_MODEL
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Course(BaseModel):
     title = models.CharField(max_length=200, verbose_name=_('Title'))
     image = models.ImageField(upload_to='courses/images/', verbose_name=_('Image'))
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('Price'))
-    author = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='courses',
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='courses',
                                verbose_name=_('Author'))
 
     class Meta:
@@ -42,9 +44,10 @@ class Lecture(BaseModel):
     )
     video_file = models.FileField(
         upload_to='lectures/video/',
-        validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov', 'avi', 'webm']), ],
+        validators=[FileExtensionValidator(
+            allowed_extensions=['mp4', 'mov', 'avi', 'webm', 'mkv', 'flv', 'wmv', 'm4v', 'mpeg', '3gp']), ],
         verbose_name=_('Video File'),
-        help_text=_('Supported formats: mp4, mov, avi, webm'),
+        help_text=_('Supported formats: mp4, mov, avi, webm, mkv, flv, wmv, m4v, mpeg, 3gp'),
     )
 
     class Meta:
@@ -76,7 +79,7 @@ class Lecture(BaseModel):
 
 class Review(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='reviews', verbose_name=_('Course'))
-    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews',
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews',
                              verbose_name=_('User'))
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], verbose_name=_('Rating'))
     comment = models.TextField(verbose_name=_('Comment'))

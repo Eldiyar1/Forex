@@ -1,17 +1,15 @@
+from datetime import datetime
+
 from django.contrib.auth import authenticate
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, \
-    get_object_or_404
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from django.utils.translation import gettext as _
-
-from apps.users.models import User, Profile
+from apps.users.models import Profile
 from apps.users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer, PasswordChangeSerializer
 
-
-# Create your views here.
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
 
@@ -48,7 +46,12 @@ class LoginView(APIView):
                     "username": user.username,
                     'email': user.email,
                     "refresh_token": str(refresh),
-                    "access_token": str(access)
+                    "access_token": str(access),
+                    "access_expire": datetime.fromtimestamp(
+                        access.payload.get("exp")),
+                    "refresh_expire": datetime.fromtimestamp(
+                        refresh.payload.get("exp")
+                    ).date()
                 }
             )
         return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': 'username or password incorrect!'})
