@@ -58,8 +58,6 @@ class Attendance(BaseModel):
         (1, 1),
         (0, 0),
     ]
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, related_name='attendances',
-                                 verbose_name=_('Schedule'))
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='attendances', verbose_name=_('Lesson'))
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='attendances', verbose_name=_('User'))
     status = models.PositiveIntegerField(default=0, choices=STATUS_CHOICES, verbose_name=_('Status'))

@@ -24,4 +24,4 @@ class LessonAdmin(admin.ModelAdmin):
 class AttendanceAdmin(admin.ModelAdmin):
     list_display = ('lesson', 'user', 'status')
     ordering = ('-created_at',)
-    readonly_fields = ('schedule',)
+

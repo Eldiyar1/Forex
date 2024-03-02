@@ -12,8 +12,6 @@ from django.utils.translation import gettext_lazy as _
 from apps.common.models import BaseModel
 from django.contrib.auth import get_user_model
 
-from apps.users.models import Profile
-
 User = get_user_model()
 
 
@@ -81,7 +79,7 @@ class Lecture(BaseModel):
 
 class Review(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='reviews', verbose_name=_('Course'))
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reviews',
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews',
                              verbose_name=_('User'))
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], verbose_name=_('Rating'))
     comment = models.TextField(verbose_name=_('Comment'))

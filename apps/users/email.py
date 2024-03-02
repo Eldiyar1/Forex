@@ -1,4 +1,5 @@
 import random
+import string
 
 from django.core.mail import send_mail
 from django.utils.translation import gettext_lazy as _
@@ -30,3 +31,8 @@ def send_email_reset_password(email, reset_password):
     )
     email_from = "proverkageeks@gmail.com"
     send_mail(subject, message, email_from, [email])
+
+
+def generate_random_code(length=4):
+    characters = string.octdigits + string.digits
+    return "".join(random.choice(characters) for _ in range(length))

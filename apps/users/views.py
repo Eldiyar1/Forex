@@ -1,7 +1,3 @@
-import random
-import string
-from datetime import datetime
-
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
@@ -11,15 +7,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
-from apps.users.email import send_email_confirmation, send_email_reset_password
+from apps.users.email import send_email_confirmation, send_email_reset_password, generate_random_code
 from apps.users.models import Profile, User, PasswordResetToken
 from apps.users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer, PasswordChangeSerializer, \
     VerifySerializer, PasswordResetSearchUserSerializer, PasswordResetCodeSerializer, PasswordResetNewPasswordSerializer
-
-
-def generate_random_code(length=4):
-    characters = string.octdigits + string.digits
-    return "".join(random.choice(characters) for _ in range(length))
 
 
 class RegisterView(CreateAPIView):
@@ -28,17 +19,15 @@ class RegisterView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-
+        self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        send_email_confirmation(user.email)
-
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):
         user = serializer.save()
         profile = Profile.objects.create(user=user)
         profile.save()
+        send_email_confirmation(user.email)
 
 
 class LoginView(APIView):

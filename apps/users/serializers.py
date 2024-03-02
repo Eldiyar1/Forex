@@ -35,7 +35,7 @@ class LoginSerializer(serializers.Serializer):
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', required=False)
     email = serializers.EmailField(source='user.email', required=False)
-    phone = PhoneNumberField(source='user.phone', region='KG', required=False)
+    phone = PhoneNumberField(source='user.phone', required=False)
 
     class Meta:
         model = Profile

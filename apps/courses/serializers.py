@@ -10,21 +10,21 @@ class CourseSerializer(serializers.ModelSerializer):
         abstract = True
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class AuthorSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField(source='profile.avatar', required=False)
+
     class Meta:
-        model = Profile
-        fields = ('id', 'avatar')
+        model = User
+        fields = ('id', 'username', 'avatar')
         abstract = True
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    course = CourseSerializer(read_only=True)
-    user = UserProfileSerializer(read_only=True)
+    user = AuthorSerializer(read_only=True)
 
     class Meta:
         model = Review
         fields = ('id', 'course', 'user', 'rating', 'comment', 'created_at')
-        read_only_fields = ('user',)
 
 
 class LectureSerializer(serializers.ModelSerializer):
@@ -48,13 +48,6 @@ class BaseCourseSerializer(serializers.ModelSerializer):
 class CourseListSerializer(BaseCourseSerializer):
     class Meta(BaseCourseSerializer.Meta):
         model = Course
-
-
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username')
-        abstract = True
 
 
 class CourseDetailSerializer(BaseCourseSerializer):

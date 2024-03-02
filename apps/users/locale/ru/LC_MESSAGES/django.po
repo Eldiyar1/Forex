@@ -29,12 +29,17 @@ msgid "Email Confirmation"
 msgstr "Подтверждение по электронной почте"
 
 #: apps/users/email.py:15
-msgid ""
-"Hello! Your email address was provided for logging into the Zarina "
+msgid "Hello! Your email address was provided for logging into the Zarina "
 "application. "
-msgstr ""
-"Привет! Ваш адрес электронной почты был предоставлен для входа в приложение "
+"Please enter this code on the login page: {code}. "
+"If this was not you or you did not register on the site, simply ignore "
+"this email."
+
+msgstr "Привет! Ваш адрес электронной почты был предоставлен для входа в приложение "
 "Zarina. "
+"Пожалуйста, введите этот код на странице входа: {code}. "
+"Если это были не вы или вы не регистрировались на сайте, просто проигнорируйте "
+"это письмо."
 
 #: apps/users/email.py:27
 #, fuzzy
