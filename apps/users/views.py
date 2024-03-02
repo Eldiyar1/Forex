@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, \
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, \
     get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,7 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from django.utils.translation import gettext as _
 
 from apps.users.models import User, Profile
-from apps.users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer
+from apps.users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer, PasswordChangeSerializer
 
 
 # Create your views here.
@@ -62,3 +62,34 @@ class ProfileUserAPIView(RetrieveUpdateAPIView):
 
     def get_object(self):
         return get_object_or_404(Profile, user=self.request.user.id)
+
+
+class ChangePasswordView(CreateAPIView):
+    serializer_class = PasswordChangeSerializer
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        old_password = serializer.validated_data.get("old_password")
+        new_password = serializer.validated_data.get("new_password")
+
+        if not user.check_password(old_password):
+            return Response(
+                {"error": "Старый пароль указан неверно."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if old_password == new_password:
+            return Response(
+                {"error": "Новый пароль не должен совпадать со старым паролем."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        user.set_password(new_password)
+        user.save()
+
+        return Response(
+            {"message": "Пароль успешно изменен."}, status=status.HTTP_200_OK
+        )
