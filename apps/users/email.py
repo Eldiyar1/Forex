@@ -1,6 +1,7 @@
 import random
 
 from django.core.mail import send_mail
+from django.utils.translation import gettext_lazy as _
 
 from apps.users.models import User
 
@@ -9,11 +10,11 @@ reset_password = random.randint(1000, 9999)
 
 
 def send_email_confirmation(email):
-    subject = "Подтверждение регистрации"
-    message = (
-        f"Здравствуйте! Ваш адрес электронной почты был указан для входа на приложение Zarina Пожалуйста, введите этот код на странице авторизации:/"
-        f"{code}/"
-        f" Если это не вы или вы не регистрировались на сайте, то просто проигнорируйте это письмо"
+    subject = _("Email Confirmation")
+    message = _(
+        f"Hello! Your email address was provided for logging into the Zarina application. "
+        f"Please enter this code on the login page: {code}. "
+        f"If this was not you or you did not register on the site, simply ignore this email."
     )
     email_from = "ttestdb01@gmail.com"
     send_mail(subject, message, email_from, [email])
@@ -23,9 +24,9 @@ def send_email_confirmation(email):
 
 
 def send_email_reset_password(email, reset_password):
-    subject = "Восстановление пароля"
-    message = (
-        f"Код для восстановления пароля: {reset_password} Код действителен в течении 5 минут"
+    subject = _("Password Reset")
+    message = _(
+        f"Password reset code: {reset_password}. The code is valid for 5 minutes."
     )
     email_from = "proverkageeks@gmail.com"
     send_mail(subject, message, email_from, [email])

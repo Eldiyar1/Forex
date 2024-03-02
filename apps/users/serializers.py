@@ -13,7 +13,7 @@ class RegisterSerializer(serializers.Serializer):
         min_length=6, validators=[UniqueValidator(queryset=User.objects.all())]
     )
     password = serializers.CharField(min_length=8, write_only=True)
-    phone = PhoneNumberField(region='KG')
+    phone = PhoneNumberField()
 
     def create(self, validated_data):
         password = validated_data.pop("password")
@@ -30,16 +30,6 @@ class LoginSerializer(serializers.Serializer):
     class Meta:
         model = User
         fields = ["token"]
-
-
-# class UserProfileSerializer(serializers.ModelSerializer):
-#     username = serializers.CharField(source='user.username')
-#     email = serializers.CharField(source='user.email')
-#
-#     class Meta:
-#         model = Profile
-#         fields = ['id', 'username', 'email', 'avatar']
-#         read_only_fields = ['user']
 
 
 class ProfileSerializer(serializers.ModelSerializer):

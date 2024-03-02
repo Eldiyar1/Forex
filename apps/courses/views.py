@@ -17,7 +17,7 @@ class CourseListAPIView(ListAPIView):
         serializer.save(author=self.request.user)
 
 
-class CourseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class CourseDetailAPIView(RetrieveAPIView):
     queryset = Course.objects.select_related('author') \
         .prefetch_related('reviews', 'lectures').annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseDetailSerializer

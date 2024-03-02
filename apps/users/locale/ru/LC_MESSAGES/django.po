@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 05:00+0600\n"
+"POT-Creation-Date: 2024-03-02 21:21+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,9 +20,32 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: apps/users/apps.py:8 apps/users/models.py:29
+#: apps/users/apps.py:8 apps/users/models.py:30
 msgid "Users"
 msgstr "Пользователи"
+
+#: apps/users/email.py:13
+msgid "Email Confirmation"
+msgstr "Подтверждение по электронной почте"
+
+#: apps/users/email.py:15
+msgid ""
+"Hello! Your email address was provided for logging into the Zarina "
+"application. "
+msgstr ""
+"Привет! Ваш адрес электронной почты был предоставлен для входа в приложение "
+"Zarina. "
+
+#: apps/users/email.py:27
+#, fuzzy
+#| msgid "Password"
+msgid "Password Reset"
+msgstr "Пароль"
+
+#: apps/users/email.py:29
+#, python-brace-format
+msgid "Password reset code: {reset_password}. The code is valid for 5 minutes."
+msgstr "Код сброса пароля: {reset_password}. Код действителен 5 минут."
 
 #: apps/users/models.py:11
 msgid "Username"
@@ -40,38 +63,78 @@ msgstr "Номер телефона"
 msgid "Password"
 msgstr "Пароль"
 
-#: apps/users/models.py:15
+#: apps/users/models.py:16
 msgid "Active"
 msgstr "Активный"
 
-#: apps/users/models.py:16
+#: apps/users/models.py:17
 msgid "Staff"
 msgstr "Персонал"
 
-#: apps/users/models.py:17
+#: apps/users/models.py:18
 msgid "Admin"
 msgstr "Администратор"
 
-#: apps/users/models.py:18
+#: apps/users/models.py:19
 msgid "Date Created"
 msgstr "Дата создания"
 
-#: apps/users/models.py:28 apps/users/models.py:34
+#: apps/users/models.py:29 apps/users/models.py:35
 msgid "User"
 msgstr "Пользователь"
 
-#: apps/users/models.py:35
+#: apps/users/models.py:36
 msgid "Avatar"
 msgstr "Аватар"
 
-#: apps/users/models.py:42
+#: apps/users/models.py:43
 msgid "Profile"
 msgstr "Профиль"
 
-#: apps/users/models.py:43
+#: apps/users/models.py:44
 msgid "Profiles"
 msgstr "Профили"
 
-#: apps/users/views.py:44
-msgid "authenticate successfully"
-msgstr "аутентифицирован успешно"
+#: apps/users/views.py:62
+msgid "username or password incorrect!"
+msgstr "Неверное имя пользователя или пароль!"
+
+#: apps/users/views.py:88
+msgid "Old password is incorrect."
+msgstr "Старый пароль неверен."
+
+#: apps/users/views.py:94
+msgid "New password should not match old password."
+msgstr "Новый пароль не должен совпадать со старым паролем."
+
+#: apps/users/views.py:102
+msgid "Password successfully changed."
+msgstr "Пароль успешно изменен."
+
+#: apps/users/views.py:117
+msgid "Invalid verification code."
+msgstr "Неверный код подтверждения."
+
+#: apps/users/views.py:123
+msgid "Account successfully verified."
+msgstr "Аккаунт успешно подтвержден."
+
+#: apps/users/views.py:136
+msgid "User with provided email address not found."
+msgstr "Пользователь с указанным адресом электронной почты не найден."
+
+#: apps/users/views.py:147
+msgid "send"
+msgstr "отправить"
+
+#: apps/users/views.py:161 apps/users/views.py:180
+msgid "Invalid password reset code or code expiration time has passed."
+msgstr "Неверный код сброса пароля или истекло время действия кода."
+
+#: apps/users/views.py:164
+msgid "success"
+msgstr "успех"
+
+#: apps/users/views.py:189
+msgid "Password successfully reset."
+msgstr "Пароль успешно сброшен."

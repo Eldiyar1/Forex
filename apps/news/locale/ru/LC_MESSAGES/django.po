@@ -39,4 +39,3 @@ msgstr "Дата и время начала"
 #, python-brace-format
 msgid "News: {title}"
 msgstr "Новости: {title}"
-

@@ -3,13 +3,13 @@ import string
 from datetime import datetime
 
 from django.contrib.auth import authenticate
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
-from django.utils.translation import gettext as _
-from django.utils import timezone
 
 from apps.users.email import send_email_confirmation, send_email_reset_password
 from apps.users.models import Profile, User, PasswordResetToken
@@ -54,20 +54,12 @@ class LoginView(APIView):
             access = AccessToken.for_user(user)
             return Response(
                 {
-                    'messege': _('authenticate successfully'),
                     "status": status.HTTP_200_OK,
-                    "username": user.username,
-                    'email': user.email,
                     "refresh_token": str(refresh),
                     "access_token": str(access),
-                    "access_expire": datetime.fromtimestamp(
-                        access.payload.get("exp")),
-                    "refresh_expire": datetime.fromtimestamp(
-                        refresh.payload.get("exp")
-                    ).date()
                 }
             )
-        return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': 'username or password incorrect!'})
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': _('username or password incorrect!')})
 
     def list(self, request):
         return Response(status=status.HTTP_200_OK)
@@ -93,13 +85,13 @@ class ChangePasswordView(CreateAPIView):
 
         if not user.check_password(old_password):
             return Response(
-                {"error": "Старый пароль указан неверно."},
+                {"error": _("Old password is incorrect.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
         if old_password == new_password:
             return Response(
-                {"error": "Новый пароль не должен совпадать со старым паролем."},
+                {"error": _("New password should not match old password.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -107,7 +99,7 @@ class ChangePasswordView(CreateAPIView):
         user.save()
 
         return Response(
-            {"message": "Пароль успешно изменен."}, status=status.HTTP_200_OK
+            {"message": _("Password successfully changed.")}, status=status.HTTP_200_OK
         )
 
 
@@ -122,13 +114,13 @@ class VerifyOTP(APIView):
 
         user = User.objects.filter(otp=otp).first()
         if user.otp != otp:
-            return Response({"error": "Неверный код подтверждения."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": _("Invalid verification code.")}, status=status.HTTP_400_BAD_REQUEST)
 
         user.is_active = True
         user.save()
         user.otp = None
         user.save()
-        return Response({"message": "Аккаунт успешно подтвержден."}, status=status.HTTP_200_OK)
+        return Response({"message": _("Account successfully verified.")}, status=status.HTTP_200_OK)
 
 
 class ResetPasswordSendEmail(CreateAPIView):
@@ -141,7 +133,7 @@ class ResetPasswordSendEmail(CreateAPIView):
         email = serializer.validated_data["email"]
         user = User.objects.filter(email=email).first()
         if not user:
-            return Response({"error": "Пользователь с указанным адресом электронной почты не найден."},
+            return Response({"error": _("User with provided email address not found.")},
                             status=status.HTTP_404_NOT_FOUND)
 
         time = timezone.now() + timezone.timedelta(minutes=5)
@@ -152,7 +144,7 @@ class ResetPasswordSendEmail(CreateAPIView):
 
         send_email_reset_password(user.email, code)
 
-        return Response({"detail": "send"}, status=status.HTTP_200_OK)
+        return Response({"detail": _("send")}, status=status.HTTP_200_OK)
 
 
 class PasswordResetCode(CreateAPIView):
@@ -166,10 +158,10 @@ class PasswordResetCode(CreateAPIView):
         try:
             reset_token = PasswordResetToken.objects.get(code=code, time__gt=timezone.now())
         except PasswordResetToken.DoesNotExist:
-            return Response({"error": "Недействительный код для сброса пароля или время истечения кода закончилось."},
+            return Response({"error": _("Invalid password reset code or code expiration time has passed.")},
                             status=status.HTTP_406_NOT_ACCEPTABLE)
 
-        return Response({"detail": "success", "code": code}, status=status.HTTP_200_OK)
+        return Response({"detail": _("success"), "code": code}, status=status.HTTP_200_OK)
 
 
 class PasswordResetNewPassword(CreateAPIView):
@@ -185,7 +177,7 @@ class PasswordResetNewPassword(CreateAPIView):
         try:
             password_reset_token = PasswordResetToken.objects.get(code=code, time__gt=timezone.now())
         except PasswordResetToken.DoesNotExist:
-            return Response({"error": "Недействительный код для сброса пароля или время истечения кода закончилось."},
+            return Response({"error": _("Invalid password reset code or code expiration time has passed.")},
                             status=status.HTTP_404_NOT_FOUND)
 
         user = password_reset_token.user
@@ -194,4 +186,4 @@ class PasswordResetNewPassword(CreateAPIView):
 
         password_reset_token.delete()
 
-        return Response({"detail": "Пароль успешно сброшен."}, status=status.HTTP_200_OK)
+        return Response({"detail": _("Password successfully reset.")}, status=status.HTTP_200_OK)

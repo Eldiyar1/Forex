@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 05:00+0600\n"
+"POT-Creation-Date: 2024-03-02 21:21+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: apps/users/apps.py:8 apps/users/models.py:29
+#: apps/users/apps.py:8 apps/users/models.py:30
 msgid "Users"
 msgstr "Пайдаланушылар"
+
+#: apps/users/email.py:13
+msgid "Email Confirmation"
+msgstr "Электронды поштаға растау"
+
+#: apps/users/email.py:15
+msgid ""
+"Hello! Your email address was provided for logging into the Zarina "
+"application. "
+msgstr ""
+"Сәлем! Zarina қолданушылар қосымшасына кіру үшін сіздің электронды "
+"пошта мекенжайыңыз ұсынылды. "
+
+#: apps/users/email.py:27
+#, fuzzy
+msgid "Password Reset"
+msgstr "Құпия сөз"
+
+#: apps/users/email.py:29
+#, python-brace-format
+msgid "Құпия сөзді қалпына келтіру коды: {reset_password}. Код 5 минут мерзімінде жарамды."
+msgstr ""
 
 #: apps/users/models.py:11
 msgid "Username"
@@ -38,38 +60,78 @@ msgstr "Телефон нөмірі"
 msgid "Password"
 msgstr "Құпия сөз"
 
-#: apps/users/models.py:15
-msgid "Active"
-msgstr "Активті"
-
 #: apps/users/models.py:16
+msgid "Active"
+msgstr "Әрекетті"
+
+#: apps/users/models.py:17
 msgid "Staff"
 msgstr "Қызметкерлер"
 
-#: apps/users/models.py:17
+#: apps/users/models.py:18
 msgid "Admin"
 msgstr "Админ"
 
-#: apps/users/models.py:18
+#: apps/users/models.py:19
 msgid "Date Created"
 msgstr "Жасалған күні"
 
-#: apps/users/models.py:28 apps/users/models.py:34
+#: apps/users/models.py:29 apps/users/models.py:35
 msgid "User"
 msgstr "Пайдаланушы"
 
-#: apps/users/models.py:35
+#: apps/users/models.py:36
 msgid "Avatar"
 msgstr "Аватар"
 
-#: apps/users/models.py:42
+#: apps/users/models.py:43
 msgid "Profile"
 msgstr "Профиль"
 
-#: apps/users/models.py:43
+#: apps/users/models.py:44
 msgid "Profiles"
 msgstr "Профилдер"
 
-#: apps/users/views.py:44
-msgid "authenticate successfully"
-msgstr "сәтті рұқсат алды"
+#: apps/users/views.py:62
+msgid "username or password incorrect!"
+msgstr "қолданушы аты немесе құпия сөз дұрыс емес!"
+
+#: apps/users/views.py:88
+msgid "Old password is incorrect."
+msgstr "Ескі құпия сөз дұрыс емес."
+
+#: apps/users/views.py:94
+msgid "New password should not match old password."
+msgstr "Жаңа құпия сөз ескі құпия сөзге сәйкес келуі мүмкін емес."
+
+#: apps/users/views.py:102
+msgid "Password successfully changed."
+msgstr "Құпия сөз сәтті өзгертілді."
+
+#: apps/users/views.py:117
+msgid "Invalid verification code."
+msgstr "Растау коды жарамсыз."
+
+#: apps/users/views.py:123
+msgid "Account successfully verified."
+msgstr "Аккаунт сәтті расталды."
+
+#: apps/users/views.py:136
+msgid "User with provided email address not found."
+msgstr "Көрсетілген электронды пошта мекенжайымен пайдаланушы табылмады."
+
+#: apps/users/views.py:147
+msgid "send"
+msgstr "жіберу"
+
+#: apps/users/views.py:161 apps/users/views.py:180
+msgid "Invalid password reset code or code expiration time has passed."
+msgstr "Құпия сөзді қалпына келтіру коды жарамсыз немесе кодтың мерзімі өткен."
+
+#: apps/users/views.py:164
+msgid "success"
+msgstr "сәтті"
+
+#: apps/users/views.py:189
+msgid "Password successfully reset."
+msgstr "Құпия сөз сәтті қалпына келтірілді."
