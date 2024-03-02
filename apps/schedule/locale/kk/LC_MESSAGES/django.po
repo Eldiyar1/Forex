@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 05:00+0600\n"
+"POT-Creation-Date: 2024-03-02 16:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: apps/schedule/apps.py:8 apps/schedule/models.py:15
-#: apps/schedule/models.py:26 apps/schedule/models.py:41
-#: apps/schedule/models.py:60
+#: apps/schedule/models.py:25 apps/schedule/models.py:39
+#: apps/schedule/models.py:62
 msgid "Schedule"
 msgstr "Кесте"
 
@@ -38,62 +38,70 @@ msgstr "Кестелер"
 msgid "Schedule on {date}"
 msgstr "Кесте"
 
-#: apps/schedule/models.py:24 apps/schedule/models.py:38
+#: apps/schedule/models.py:26 apps/schedule/models.py:42
 msgid "Name"
 msgstr "Аты"
 
-#: apps/schedule/models.py:25 apps/schedule/models.py:29
-msgid "Homework"
-msgstr "Үй тапсырмасы"
-
-#: apps/schedule/models.py:30
-msgid "Homeworks"
-msgstr "Үй тапсырмалары"
-
-#: apps/schedule/models.py:34
-#, python-brace-format
-msgid "Homework \"{name}\""
-msgstr "Үй тапсырмасы \"{name}\""
-
-#: apps/schedule/models.py:39
+#: apps/schedule/models.py:27
 msgid "Start time"
 msgstr "Басталу уақыты"
 
-#: apps/schedule/models.py:40
+#: apps/schedule/models.py:28
 msgid "End time"
 msgstr "Аяқталу уақыты"
 
-#: apps/schedule/models.py:44 apps/schedule/models.py:56
+#: apps/schedule/models.py:31 apps/schedule/models.py:41
+#: apps/schedule/models.py:63
 msgid "Lesson"
 msgstr "Сабақ"
 
-#: apps/schedule/models.py:45
+#: apps/schedule/models.py:32
 msgid "Lessons"
 msgstr "Сабақтар"
 
-#: apps/schedule/models.py:48
+#: apps/schedule/models.py:35
 #, python-brace-format
 msgid "Lesson \"{name}\" on {date}"
 msgstr "Сабақ \"{name}\" {date} күні"
 
-#: apps/schedule/models.py:57
+#: apps/schedule/models.py:43
+msgid "Description"
+msgstr "Сипаттама"
+
+#: apps/schedule/models.py:44 apps/schedule/models.py:48
+msgid "Homework"
+msgstr "Үй тапсырмасы"
+
+#: apps/schedule/models.py:45
+msgid "Deadline"
+msgstr "Дедлайн"
+
+#: apps/schedule/models.py:49
+msgid "Homeworks"
+msgstr "Үй тапсырмалары"
+
+#: apps/schedule/models.py:53
+#, python-brace-format
+msgid "Homework \"{name}\""
+msgstr "Үй тапсырмасы \"{name}\""
+
+#: apps/schedule/models.py:64
 msgid "User"
 msgstr "Пайдаланушы"
 
-#: apps/schedule/models.py:58
+#: apps/schedule/models.py:65
 msgid "Status"
 msgstr "Мәртебе"
 
-#: apps/schedule/models.py:63
+#: apps/schedule/models.py:68
 msgid "Attendance"
 msgstr "Қатысу"
 
-#: apps/schedule/models.py:64
+#: apps/schedule/models.py:69
 msgid "Attendances"
 msgstr "Қатысулар"
 
-#: apps/schedule/models.py:69
+#: apps/schedule/models.py:74
 #, python-brace-format
 msgid "Attendance of {user} for lesson \"{lesson}\""
 msgstr "{user} пайдаланушысының \"{lesson}\" сабағына қатысуы"
-

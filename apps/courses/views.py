@@ -6,11 +6,12 @@ from .models import Course, Review
 from .serializers import CourseListSerializer, CourseDetailSerializer,  ReviewSerializer
 
 
-class CourseListCreateAPIView(ListAPIView):
+class CourseListAPIView(ListAPIView):
     queryset = Course.objects.all().annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseListSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ('title',)
+    ordering_fields = ('avg_rating', 'price')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

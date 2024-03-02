@@ -34,6 +34,7 @@ LOCAL_APPS = [
     'apps.users.apps.UsersConfig',
     'apps.courses.apps.CoursesConfig',
     'apps.schedule.apps.ScheduleConfig',
+    'apps.news.apps.NewsConfig',
 ]
 
 INSTALLED_APPS = [
@@ -124,6 +125,7 @@ LANGUAGES = [
 LOCALE_PATHS = [
     f"{BASE_DIR}/common/locale",
     f"{BASE_DIR}/courses/locale",
+    f"{BASE_DIR}/news/locale",
     f"{BASE_DIR}/users/locale",
     f"{BASE_DIR}/cors/locale",
 ]

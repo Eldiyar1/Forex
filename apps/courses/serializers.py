@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Course, Lecture, Review
-from ..users.models import User
+from ..users.models import User, Profile
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -10,15 +10,16 @@ class CourseSerializer(serializers.ModelSerializer):
         abstract = True
 
 
-class AuthorSerializer(serializers.ModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('id', 'username')
+        model = Profile
+        fields = ('id', 'avatar')
+        abstract = True
 
 
 class ReviewSerializer(serializers.ModelSerializer):
     course = CourseSerializer(read_only=True)
-    user = AuthorSerializer(read_only=True)
+    user = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = Review
@@ -37,6 +38,7 @@ class BaseCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = ('id', 'title', 'image', 'price', 'rating')
+        abstract = True
 
     @staticmethod
     def get_rating(obj):
@@ -46,6 +48,13 @@ class BaseCourseSerializer(serializers.ModelSerializer):
 class CourseListSerializer(BaseCourseSerializer):
     class Meta(BaseCourseSerializer.Meta):
         model = Course
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+        abstract = True
 
 
 class CourseDetailSerializer(BaseCourseSerializer):

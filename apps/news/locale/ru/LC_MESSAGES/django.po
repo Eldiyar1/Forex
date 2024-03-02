@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 16:47+0600\n"
+"POT-Creation-Date: 2024-03-02 16:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,27 +19,24 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: apps/news/apps.py:8 apps/news/models.py:16 apps/news/models.py:17
+msgid "News"
+msgstr "Новости"
 
-#: cors/settings/base.py:120
-msgid "Русский"
-msgstr ""
+#: apps/news/models.py:8
+msgid "Title"
+msgstr "Заголовок"
 
-#: cors/settings/base.py:121
-msgid "English"
-msgstr ""
+#: apps/news/models.py:9
+msgid "Image"
+msgstr "Изображение"
 
-#: cors/settings/base.py:122
-msgid "Қазақша"
-msgstr ""
+#: apps/news/models.py:10
+msgid "Start Datetime"
+msgstr "Дата и время начала"
 
-#: cors/settings/jazzmin.py:7
-msgid "Admin site"
-msgstr "Сайт администратора"
+#: apps/news/models.py:13
+#, python-brace-format
+msgid "News: {title}"
+msgstr "Новости: {title}"
 
-#: cors/settings/jazzmin.py:8
-msgid "Welcome to Forex"
-msgstr "Добро пожаловать на Forex"
-
-#: cors/settings/jazzmin.py:13
-msgid "Home"
-msgstr "Главная"
