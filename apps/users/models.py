@@ -12,7 +12,8 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     email = models.EmailField(null=True, verbose_name=_("E-mail"))
     phone = PhoneNumberField(null=True, blank=False, unique=True, verbose_name=_("Phone Number"))
     password = models.CharField(max_length=128, blank=True, null=True, verbose_name=_("Password"))
-    is_active = models.BooleanField(default=True, verbose_name=_("Active"))
+    otp = models.CharField(max_length=4, null=True, blank=True)
+    is_active = models.BooleanField(default=False, verbose_name=_("Active"))
     is_staff = models.BooleanField(default=False, verbose_name=_("Staff"))
     is_superuser = models.BooleanField(default=False, verbose_name=_("Admin"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Date Created'))
@@ -42,3 +43,9 @@ class Profile(BaseModel):
         verbose_name = _("Profile")
         verbose_name_plural = _("Profiles")
         ordering = ("-created_at",)
+
+
+class PasswordResetToken(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    code = models.CharField(max_length=100)
+    time = models.DateTimeField()

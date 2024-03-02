@@ -54,7 +54,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-
 ROOT_URLCONF = "cors.urls"
 
 TEMPLATES = [
@@ -128,7 +127,6 @@ LOCALE_PATHS = [
     f"{BASE_DIR}/cors/locale",
 ]
 
-
 # Static files
 STATIC_URL = '/back_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'back_static')
@@ -143,6 +141,14 @@ DATE_INPUT_FORMATS = [
     "%d.%m.%Y",
 ]
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "ttestdb01@gmail.com"
+EMAIL_HOST_PASSWORD = "altp tlft fapi dkrt"
+
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
     'DATE_FORMAT': "%d.%m.%Y",
@@ -153,9 +159,6 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
 
 }
 

@@ -27,6 +27,7 @@ class UserAdmin(UserAdmin):
                     "username",
                     'email',
                     "password",
+                    'otp',
                     "is_superuser",
                     "is_staff",
                     "is_active",
