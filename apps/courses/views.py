@@ -9,7 +9,7 @@ from .serializers import CourseListSerializer, CourseDetailSerializer,  ReviewSe
 class CourseListAPIView(ListAPIView):
     queryset = Course.objects.all().annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseListSerializer
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [filters.SearchFilter]
     search_fields = ('title',)
     ordering_fields = ('avg_rating', 'price')
 
@@ -17,7 +17,7 @@ class CourseListAPIView(ListAPIView):
         serializer.save(author=self.request.user)
 
 
-class CourseDetailAPIView(RetrieveAPIView):
+class CourseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.select_related('author') \
         .prefetch_related('reviews', 'lectures').annotate(avg_rating=Avg('reviews__rating'))
     serializer_class = CourseDetailSerializer
@@ -34,4 +34,3 @@ class ReviewListCreateAPIView(ListCreateAPIView):
 class ReviewDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all().select_related('course', 'user')
     serializer_class = ReviewSerializer
-

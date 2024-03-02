@@ -49,7 +49,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['user', 'avatar', 'username', 'email', 'phone']
+        fields = ['user', 'avatar', 'username', 'phone', 'email']
         read_only_fields = ['user', 'email']
 
     def update(self, instance, validated_data):
@@ -58,3 +58,31 @@ class ProfileSerializer(serializers.ModelSerializer):
             setattr(instance.user, attr, value)
         instance.user.save()
         return instance
+
+
+class PasswordChangeSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
+class VerifySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['otp']
+
+
+class PasswordResetNewPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(
+        style={"input_type": "password"}, help_text="min lenght 4", min_length=4
+    )
+
+
+class PasswordResetCodeSerializer(serializers.Serializer):
+    code = serializers.CharField()
+
+
+class PasswordResetSearchUserSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    class Meta:
+        fields = ["email"]
