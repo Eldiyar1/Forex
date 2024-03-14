@@ -1,9 +1,9 @@
-from django.db.models import Avg
+from django.db.models import Avg, Prefetch
 from rest_framework import filters
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 
 from .models import Course, Review
-from .serializers import CourseListSerializer, CourseDetailSerializer,  ReviewSerializer
+from .serializers import CourseListSerializer, CourseDetailSerializer, ReviewSerializer
 
 
 class CourseListAPIView(ListAPIView):
@@ -18,8 +18,12 @@ class CourseListAPIView(ListAPIView):
 
 
 class CourseDetailAPIView(RetrieveAPIView):
-    queryset = Course.objects.select_related('author') \
-        .prefetch_related('reviews', 'lectures').annotate(avg_rating=Avg('reviews__rating'))
+    queryset = Course.objects.prefetch_related(
+        Prefetch('lectures'),
+        Prefetch('reviews', queryset=Review.objects.select_related('user__profile')),
+        'author__profile'
+    ).select_related('author__profile').annotate(avg_rating=Avg('reviews__rating'))
+
     serializer_class = CourseDetailSerializer
 
 
