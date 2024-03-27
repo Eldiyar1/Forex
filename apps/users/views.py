@@ -102,14 +102,15 @@ class VerifyOTP(APIView):
         otp = serializer.validated_data.get("otp")
 
         user = User.objects.filter(otp=otp).first()
-        if user.otp != otp:
-            return Response({"error": _("Invalid verification code.")}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not user:
+            return Response({"error": "Пользователь с таким кодом подтверждения не найден."}, status=status.HTTP_404_NOT_FOUND)
 
         user.is_active = True
-        user.save()
         user.otp = None
         user.save()
-        return Response({"message": _("Account successfully verified.")}, status=status.HTTP_200_OK)
+
+        return Response({"message": "Аккаунт успешно подтвержден."}, status=status.HTTP_200_OK)
 
 
 class ResetPasswordSendEmail(CreateAPIView):
