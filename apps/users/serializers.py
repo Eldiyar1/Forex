@@ -24,12 +24,12 @@ class RegisterSerializer(serializers.Serializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=30)
+    email = serializers.EmailField()
     password = serializers.CharField()
 
     class Meta:
         model = User
-        fields = ["token"]
+        fields = ("token",)
 
 
 class ProfileSerializer(serializers.ModelSerializer):

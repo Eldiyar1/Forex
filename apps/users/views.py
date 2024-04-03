@@ -30,14 +30,16 @@ class RegisterView(CreateAPIView):
         send_email_confirmation(user.email)
 
 
-class LoginView(APIView):
+class LoginView(CreateAPIView):
     serializer_class = LoginSerializer
 
-    def post(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-
-        user = authenticate(**serializer.validated_data)
+        email = serializer.validated_data.get("email")
+        password = serializer.validated_data.get("password")
+        user_email = get_object_or_404(User, email=email)
+        user = authenticate(request, username=user_email.username, password=password)
         if user is not None:
             refresh = RefreshToken.for_user(user)
             access = AccessToken.for_user(user)
@@ -48,7 +50,8 @@ class LoginView(APIView):
                     "access_token": str(access),
                 }
             )
-        return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': _('username or password incorrect!')})
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': _('username or password incorrect!')})
 
     def list(self, request):
         return Response(status=status.HTTP_200_OK)
