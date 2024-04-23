@@ -99,7 +99,7 @@ class VerifyOTP(APIView):
     serializer_class = VerifySerializer
 
     def post(self, request):
-        serializer = VerifySerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         otp = serializer.validated_data.get("otp")
@@ -107,7 +107,8 @@ class VerifyOTP(APIView):
         user = User.objects.filter(otp=otp).first()
 
         if not user:
-            return Response({"error": "Пользователь с таким кодом подтверждения не найден."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"error": "Пользователь с таким кодом подтверждения не найден."},
+                            status=status.HTTP_404_NOT_FOUND)
 
         user.is_active = True
         user.otp = None

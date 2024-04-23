@@ -56,9 +56,11 @@ class PasswordChangeSerializer(serializers.Serializer):
 
 
 class VerifySerializer(serializers.ModelSerializer):
+    email = serializers.ReadOnlyField()
+
     class Meta:
         model = User
-        fields = ['otp']
+        fields = ('otp', 'email')
 
 
 class PasswordResetNewPasswordSerializer(serializers.Serializer):

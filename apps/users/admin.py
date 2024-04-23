@@ -12,6 +12,7 @@ admin.site.register(Profile)
 @admin.register(User)
 class UserAdmin(UserAdmin):
     list_display = ("username", 'email', "phone", "is_staff", "is_active", "is_superuser")
+    exclude = ('otp',)
     list_display_links = ("username",)
     list_filter = ("is_active", "is_staff", "is_superuser", "created_at")
     list_editable = ("is_active", "is_staff")
@@ -28,7 +29,6 @@ class UserAdmin(UserAdmin):
                     'email',
                     "phone",
                     "password",
-                    'otp',
                     "is_superuser",
                     "is_staff",
                     "is_active",
