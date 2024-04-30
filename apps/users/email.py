@@ -6,11 +6,9 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.users.models import User
 
-code = random.randint(1000, 9999)
-reset_password = random.randint(1000, 9999)
-
-
 def send_email_confirmation(email):
+    code = random.randint(1000, 9999)
+    print("first:", code)
     subject = _("Email Confirmation")
     message = _(
         f"Hello! Your email address was provided for logging into the Zarina application. "
@@ -21,6 +19,7 @@ def send_email_confirmation(email):
     send_mail(subject, message, email_from, [email])
     user_obj = User.objects.get(email=email)
     user_obj.otp = code
+    print(user_obj.otp)
     user_obj.save()
 
 

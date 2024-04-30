@@ -103,6 +103,7 @@ class VerifyOTP(APIView):
         serializer.is_valid(raise_exception=True)
 
         otp = serializer.validated_data.get("otp")
+        print('otp', otp)
 
         user = User.objects.filter(otp=otp).first()
 
