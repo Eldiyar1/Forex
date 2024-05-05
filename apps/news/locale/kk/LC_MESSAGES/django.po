@@ -26,14 +26,18 @@ msgid "Title"
 msgstr "Тақырып"
 
 #: apps/news/models.py:9
+msgid "Description"
+msgstr "Сипаттама"
+
+#: apps/news/models.py:10
 msgid "Image"
 msgstr "Сурет"
 
-#: apps/news/models.py:10
+#: apps/news/models.py:11
 msgid "Start Datetime"
 msgstr "Бастау уақыты"
 
-#: apps/news/models.py:13
+#: apps/news/models.py:14
 #, python-brace-format
 msgid "News: {title}"
 msgstr "Жаңалық: {title}"

@@ -4,5 +4,5 @@ from .models import News
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'start_datetime')
+    list_display = ('title', 'description', 'start_datetime')
     ordering = ('-created_at',)

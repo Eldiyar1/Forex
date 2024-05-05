@@ -6,6 +6,7 @@ from apps.common.models import BaseModel
 
 class News(BaseModel):
     title = models.CharField(max_length=200, verbose_name=_('Title'))
+    description = models.TextField(verbose_name=_('Description'))
     image = models.ImageField(upload_to='news/images/', verbose_name=_('Image'))
     start_datetime = models.DateTimeField(verbose_name=_('Start Datetime'))
 
