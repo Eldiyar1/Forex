@@ -35,3 +35,6 @@ def send_email_reset_password(email, reset_password):
 def generate_random_code(length=4):
     characters = string.octdigits + string.digits
     return "".join(random.choice(characters) for _ in range(length))
+
+
+#safdfd
