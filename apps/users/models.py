@@ -12,7 +12,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     email = models.EmailField(null=True, verbose_name=_("E-mail"))
     phone = PhoneNumberField(null=True, blank=False, unique=True, verbose_name=_("Phone Number"))
     password = models.CharField(max_length=128, blank=True, null=True, verbose_name=_("Password"))
-    otp = models.CharField(max_length=4, null=True, blank=True, unique=True)
+    otp = models.CharField(max_length=4, null=True, blank=True)
     is_active = models.BooleanField(default=False, verbose_name=_("Active"))
     is_staff = models.BooleanField(default=False, verbose_name=_("Staff"))
     is_superuser = models.BooleanField(default=False, verbose_name=_("Admin"))
