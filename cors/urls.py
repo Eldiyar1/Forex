@@ -11,7 +11,8 @@ urlpatterns = [
     path("api/v1/", include("apps.courses.urls")),
     path('api/v1/', include('apps.schedule.urls')),
     path('api/v1/', include('apps.news.urls')),
-    path('api/v1/', include('apps.users.urls'))
+    path('api/v1/', include('apps.users.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ] + swagger_urlpatterns
 
 if settings.DEBUG:

@@ -45,6 +45,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'total_attendances')
         abstract = True
+        ref_name = 'ScheduleUserSerializer'
 
 
 class AttendanceSerializer(serializers.ModelSerializer):

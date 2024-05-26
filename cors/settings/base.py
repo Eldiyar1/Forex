@@ -25,8 +25,11 @@ LIBRARY_APPS = [
     'django_filters',
     "rest_framework_simplejwt",
     'debug_toolbar',
+    'djoser',
     'drf_yasg',
     "phonenumber_field",
+    'rest_framework_simplejwt.token_blacklist',
+
 ]
 
 LOCAL_APPS = [
@@ -84,9 +87,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "users.User"
 
+DJOSER = {
+    'TOKEN_MODEL': None,  # if you are using SimpleJWT
+    'SERIALIZERS': {},
+}
+
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,
