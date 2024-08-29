@@ -163,7 +163,7 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
     'DATE_FORMAT': "%d.%m.%Y",
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 13,
+    'PAGE_SIZE': 2,
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
